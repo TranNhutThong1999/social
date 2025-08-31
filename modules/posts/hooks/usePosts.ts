@@ -1,8 +1,8 @@
 "use client";
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { CreatePostData, PostsFilter } from '@/src/types/types';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { postsApi } from '../services/posts.api';
-import { PostsFilter, CreatePostData, UpdatePostData } from '@/src/types/types';
 
 
 
@@ -34,26 +34,3 @@ export const useCreatePost = () => {
   });
 };
 
-export const useUpdatePost = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdatePostData }) =>
-      postsApi.updatePost(id, data),
-    onSuccess: (updatedPost: any) => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
-      queryClient.setQueryData(['post', updatedPost.id], updatedPost);
-    },
-  });
-};
-
-export const useDeletePost = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: (id: string) => postsApi.deletePost(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
-    },
-  });
-};

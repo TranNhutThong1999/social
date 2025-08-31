@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { apiClient } from '@/modules/api/axios';
-import { Post, CreatePostData, UpdatePostData, PostsFilter, PostsResponse } from '@/src/types/types';
+import { CreatePostData, Post, PostsFilter, PostsResponse } from '@/src/types/types';
+import axios from 'axios';
 
 export const postsApi = {
   // Get posts with filters
