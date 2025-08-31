@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { Toaster } from 'react-hot-toast';
@@ -11,6 +11,13 @@ export const metadata: Metadata = {
 	title: 'Personal Blog - Modern Blog Application',
 	description:
 		'Modern blog application built with Next.js, React and TypeScript',
+};
+
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 1,
+	userScalable: false,
 };
 
 export default async function RootLayout({
@@ -37,6 +44,8 @@ export default async function RootLayout({
 						style: {
 							background: '#363636',
 							color: '#fff',
+							fontSize: '14px',
+							maxWidth: '90vw',
 						},
 					}}
 				/>

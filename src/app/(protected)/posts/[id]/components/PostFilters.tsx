@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Input } from '@/modules/shared/components/ui/Input';
-import { useDebounce } from '@/modules/shared/hooks/useDebounce';
+import { Input } from '@/src/components/atoms/Input';
+import { useDebounce } from '@/src/hooks/useDebounce';
 
 interface PostFiltersProps {
 	onSearchChange: (search: string) => void;

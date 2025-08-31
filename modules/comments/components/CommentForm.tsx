@@ -27,10 +27,9 @@ export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
 		mutationFn: (data: CreateCommentData) =>
 			commentsApi.createComment(data),
 		onSuccess: () => {
-			// Invalidate and refetch comments
 			queryClient.invalidateQueries({ queryKey: ['comments', postId] });
 			queryClient.invalidateQueries({ queryKey: ['posts'] });
-			reset();
+			reset({ body: '' });
 			onCommentAdded?.();
 			toast.success('Comment added!');
 		},
@@ -81,11 +80,11 @@ export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
 						type="button"
 						onClick={handleSubmit(onSubmit)}
 						disabled={isSubmitting}
-						className="bg-indigo-600 cursor-pointer text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition disabled:opacity-50"
+						className=" cursor-pointer  bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2.5 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium"
 					>
 						{isSubmitting ? 'Submitting...' : 'Submit'}
 					</button>
-				</div>	
+				</div>
 			</div>
 		</div>
 	);

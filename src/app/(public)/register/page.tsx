@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -8,8 +8,8 @@ import { useMutation } from '@tanstack/react-query';
 import { authApi } from '@/modules/auth/services/auth.api';
 import { useAuthStore } from '@/modules/shared/store/auth';
 import { RegisterCredentials } from '@/modules/auth/types';
-import { Header } from '@/modules/shared/components/Header';
-import { LoadingSpinner } from '@/modules/shared/components/LoadingSpinner';
+import { Header } from '@/src/components/organisms/Header';
+import { LoadingSpinner } from '@/src/components/atoms/LoadingSpinner';
 import toast from 'react-hot-toast';
 
 export default function RegisterPage() {
@@ -51,10 +51,10 @@ export default function RegisterPage() {
 		<div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
 			<Header />
 
-			<main className="container mx-auto px-4 py-8">
+			<main className="container mx-auto px-4 py-6 sm:py-8">
 				<div className="max-w-md mx-auto">
-					<div className="bg-white rounded-xl shadow-lg p-8 fade-in">
-						<h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+					<div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 fade-in">
+						<h2 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800">
 							Sign up
 						</h2>
 						<form
@@ -62,11 +62,12 @@ export default function RegisterPage() {
 							className="space-y-4"
 						>
 							<div>
-								<label className="block text-gray-700 font-medium mb-2">
+								<label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
 									Full name
 								</label>
 								<input
 									type="text"
+									autoFocus
 									{...register('name', {
 										required: 'Name is required',
 										minLength: {
@@ -75,8 +76,8 @@ export default function RegisterPage() {
 												'Name must contain at least 2 characters',
 										},
 									})}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-									placeholder="Please write your name"
+									className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
+									placeholder="Enter your full name"
 								/>
 								{errors.name && (
 									<p className="text-red-600 text-sm mt-1">
@@ -86,7 +87,7 @@ export default function RegisterPage() {
 							</div>
 
 							<div>
-								<label className="block text-gray-700 font-medium mb-2">
+								<label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
 									Email
 								</label>
 								<input
@@ -98,8 +99,8 @@ export default function RegisterPage() {
 											message: 'Email is not valid',
 										},
 									})}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-									placeholder="Please write your email"
+									className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
+									placeholder="Enter your email address"
 								/>
 								{errors.email && (
 									<p className="text-red-600 text-sm mt-1">
@@ -109,7 +110,7 @@ export default function RegisterPage() {
 							</div>
 
 							<div>
-								<label className="block text-gray-700 font-medium mb-2">
+								<label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
 									Password
 								</label>
 								<input
@@ -122,8 +123,8 @@ export default function RegisterPage() {
 												'Password should have a minimum of 6 characters',
 										},
 									})}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-									placeholder="Please write your password"
+									className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
+									placeholder="Enter a password "
 								/>
 								{errors.password && (
 									<p className="text-red-600 text-sm mt-1">
@@ -133,7 +134,7 @@ export default function RegisterPage() {
 							</div>
 
 							<div>
-								<label className="block text-gray-700 font-medium mb-2">
+								<label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">
 									Confirm password
 								</label>
 								<input
@@ -145,8 +146,8 @@ export default function RegisterPage() {
 											value === password ||
 											'Password confirmation does not match',
 									})}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-									placeholder="Confirm password"
+									className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
+									placeholder="Re-enter your password"
 								/>
 								{errors.confirmPassword && (
 									<p className="text-red-600 text-sm mt-1">
@@ -158,7 +159,7 @@ export default function RegisterPage() {
 							<button
 								type="submit"
 								disabled={isLoading}
-								className="cursor-pointer w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-medium"
+								className="cursor-pointer w-full bg-indigo-600 text-white py-2.5 sm:py-3 rounded-lg hover:bg-indigo-700 transition font-medium text-sm sm:text-base"
 							>
 								{isLoading ? (
 									<div className="flex items-center justify-center space-x-2">
@@ -170,13 +171,13 @@ export default function RegisterPage() {
 								)}
 							</button>
 						</form>
-						<p className="text-center mt-4 text-gray-600">
+						<p className="text-center mt-4 text-gray-600 text-sm sm:text-base">
 							Do you already have an account?{' '}
 							<Link
 								href="/login"
 								className="text-indigo-600 hover:underline"
 							>
-								Log in
+								Sign in
 							</Link>
 						</p>
 					</div>

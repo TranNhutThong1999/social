@@ -15,27 +15,28 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Verify JWT token
+    let decoded: { userId: number; email: string };
     try {
-      const decoded = jwt.verify(token, JWT_SECRET) as { userId: number; email: string };
-      
-      const user = users.find(u => u.id === decoded.userId);
-      if (!user) {
-        return NextResponse.json(
-          { error: 'User not found' },
-          { status: 404 }
-        );
-      }
-
-      // Return user data without password
-      const { password: _, ...userWithoutPassword } = user;
-
-      return NextResponse.json(userWithoutPassword);
+      decoded = jwt.verify(token, JWT_SECRET) as { userId: number; email: string };
     } catch (jwtError) {
       return NextResponse.json(
         { error: 'Invalid token' },
         { status: 401 }
       );
     }
+    
+    // Find user by ID
+    const user = users.find(u => u.id === decoded.userId);
+    if (!user) {
+      return NextResponse.json(
+        { error: 'User not found' },
+        { status: 404 }
+      );
+    }
+
+    // Return user data
+    return NextResponse.json(user);
   } catch (error) {
     console.error('Get current user error:', error);
     return NextResponse.json(

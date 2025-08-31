@@ -1,12 +1,14 @@
 'use client';
 
-import { Post } from '@/modules/posts/types';
+import { Post } from '@/src/types/types';
+import { useRouter } from 'next/navigation';
 
 interface PostDetailContentProps {
 	post: Post;
 }
 
 export function PostDetailContent({ post }: PostDetailContentProps) {
+	const router = useRouter();
 	const authorName = post.author?.name || 'Unknown';
 
 	const getAvatarColor = (name: string, isDark = false) => {
@@ -36,13 +38,35 @@ export function PostDetailContent({ post }: PostDetailContentProps) {
 	};
 
 	return (
-		<div className="p-8">
-			<h1 className="text-3xl font-bold text-gray-800 mb-4">
+		<div className="p-4 sm:p-6 lg:p-8">
+			<div className="flex items-center justify-between mb-4 sm:mb-6">
+				<button
+					onClick={() => router.back()}
+					className="cursor-pointer flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200"
+				>
+					<svg
+						className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M15 19l-7-7 7-7"
+						/>
+					</svg>
+					<span className="text-sm font-medium">Quay lại</span>
+				</button>
+			</div>
+
+			<h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
 				{post.title}
 			</h1>
-			<div className="flex items-center text-gray-600 mb-6">
-				<div className="flex items-center mr-6">
-					<div className="w-8 h-8 rounded-full overflow-hidden mr-3">
+			<div className="flex flex-col sm:flex-row sm:items-center text-gray-600 mb-4 sm:mb-6 space-y-2 sm:space-y-0">
+				<div className="flex items-center sm:mr-6">
+					<div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full overflow-hidden mr-2 sm:mr-3">
 						<svg className="w-full h-full" viewBox="0 0 100 100">
 							<defs>
 								<linearGradient
@@ -92,14 +116,14 @@ export function PostDetailContent({ post }: PostDetailContentProps) {
 							/>
 						</svg>
 					</div>
-					<span>{authorName}</span>
+					<span className="text-sm sm:text-base">{authorName}</span>
 				</div>
-				<span>
+				<span className="text-sm sm:text-base">
 					<i className="fas fa-calendar mr-2"></i>
 					{formatDate(post.createdAt)}
 				</span>
 			</div>
-			<div className="prose max-w-none text-gray-700 leading-relaxed">
+			<div className="prose max-w-none text-gray-700 leading-relaxed text-sm sm:text-base">
 				{post.body}
 			</div>
 		</div>

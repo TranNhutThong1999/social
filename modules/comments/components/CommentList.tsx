@@ -1,6 +1,6 @@
 'use client';
 
-import { LoadingSpinner } from '@/modules/shared/components/LoadingSpinner';
+import { LoadingSpinner } from '@/src/components/atoms/LoadingSpinner';
 import { useQuery } from '@tanstack/react-query';
 import { commentsApi } from '../services/comments.api';
 

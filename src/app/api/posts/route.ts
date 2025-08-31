@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { posts } from '@/modules/shared/data/posts';
-import { PostsFilter } from '@/modules/posts/types';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   try {

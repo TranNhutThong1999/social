@@ -1,8 +1,8 @@
 'use client';
 
-import { PostDetails } from '@/modules/posts/components/PostDetails';
-import { usePost } from '@/modules/posts/hooks/usePosts';
-import { Header } from '@/modules/shared/components/Header';
+import { PostDetails } from '@/src/app/(protected)/posts/[id]/components/PostDetails';
+import { usePost } from '@/src/app/(protected)/posts/[id]/hooks/usePosts';
+import { Header } from '@/src/components/organisms/Header';
 import { useParams } from 'next/navigation';
 
 export default function PostDetailPage() {

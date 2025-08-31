@@ -1,8 +1,8 @@
 // Export posts API service
-export { postsApi } from './services/posts.api';
+export { postsApi } from '../../src/api/posts.api';
 
 // Export posts hooks
-export { usePosts, usePost, useCreatePost, useUpdatePost, useDeletePost } from './hooks/usePosts';
+export { usePosts, usePost, useCreatePost, useUpdatePost, useDeletePost } from '../../src/app/(protected)/posts/[id]/hooks/usePosts';
 
 // Export types
 export type { 
@@ -11,4 +11,4 @@ export type {
   UpdatePostData, 
   PostsFilter, 
   PostsResponse 
-} from './types';
+} from '../../src/types/types';

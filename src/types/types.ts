@@ -1,4 +1,3 @@
-import { User } from "@/modules/auth/types";
 
 export interface Post {
   id: number;
@@ -49,7 +48,7 @@ export interface UpdatePostData {
 }
 
 export interface PostsFilter {
-  keyword?: string;
+  search?: string;
   sortBy?: 'createdAt' | 'title' | 'comments';
   sortOrder?: 'asc' | 'desc';
   page?: number;

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
-import { Button } from '@/modules/shared/components/ui/Button';
-import { Input } from '@/modules/shared/components/ui/Input';
+import { Button } from '@/src/components/atoms/Button';
+import { Input } from '@/src/components/atoms/Input';
 
 export const RegisterForm = () => {
 	const [formData, setFormData] = useState({

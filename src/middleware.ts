@@ -16,14 +16,12 @@ export function middleware(request: NextRequest) {
   
   const isAuthRoute = AUTH_ROUTES.includes(pathname);
   
-  // Only redirect if accessing protected route without token
   if (isProtectedRoute && !authToken) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
   
-  // Only redirect if accessing auth route with valid token
   if (authToken && isAuthRoute) {
     return NextResponse.redirect(new URL('/', request.url));
   }

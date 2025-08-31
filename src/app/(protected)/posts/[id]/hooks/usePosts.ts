@@ -1,8 +1,8 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { postsApi } from '../services/posts.api';
-import { PostsFilter, CreatePostData, UpdatePostData } from '../types';
+import { postsApi } from '../../../../../api/posts.api';
+import { PostsFilter, CreatePostData, UpdatePostData } from '../../../../../types/types';
 
 
 

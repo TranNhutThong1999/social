@@ -27,8 +27,11 @@ function useAuthCheck(token?: string) {
 		queryKey: ['auth', 'me'],
 		queryFn: authApi.getCurrentUser,
 		retry: false,
-		staleTime: 5 * 60 * 1000,
+		staleTime: 10 * 60 * 1000, // 10 minutes instead of 5
+		gcTime: 15 * 60 * 1000, // 15 minutes cache (replaces cacheTime)
 		enabled: !!token, // Only run query if token exists
+		refetchOnWindowFocus: false, // Don't refetch when window gains focus
+		refetchOnMount: false, // Don't refetch on component mount if data exists
 	});
 
 	useEffect(() => {
@@ -39,15 +42,7 @@ function useAuthCheck(token?: string) {
 			setAuthenticated(false);
 			console.log('User not authenticated');
 		}
-	}, [
-		isSuccess,
-		isError,
-		user,
-		token,
-		isLoading,
-		updateUser,
-		setAuthenticated,
-	]);
+	}, [isSuccess, isError, user, token, isLoading]);
 }
 
 function AuthProvider({
@@ -67,7 +62,12 @@ export function Providers({ children, token }: ProvidersProps) {
 			new QueryClient({
 				defaultOptions: {
 					queries: {
-						staleTime: 60 * 1000, // 1 minute
+						staleTime: 5 * 60 * 1000, // 5 minutes
+						retry: 1,
+						refetchOnWindowFocus: false,
+						refetchOnMount: false,
+					},
+					mutations: {
 						retry: 1,
 					},
 				},

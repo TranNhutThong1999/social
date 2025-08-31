@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
-import { Button } from '@/modules/shared/components/ui/Button';
-import { Input } from '@/modules/shared/components/ui/Input';
+import { Button } from '@/src/components/atoms/Button';
+import { Input } from '@/src/components/atoms/Input';
 
 export const LoginForm = () => {
 	const [formData, setFormData] = useState({
@@ -16,6 +16,7 @@ export const LoginForm = () => {
 
 	const { login } = useAuth();
 	const router = useRouter();
+	const searchParams = useSearchParams();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -25,7 +26,13 @@ export const LoginForm = () => {
 		const result = await login(formData);
 
 		if (result.success) {
-			router.push('/posts');
+			// Check for redirect parameter
+			const redirectTo = searchParams.get('redirect');
+			if (redirectTo) {
+				router.push(redirectTo);
+			} else {
+				router.push('/posts');
+			}
 		} else {
 			setError(result.error || 'Login failed');
 		}
