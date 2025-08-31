@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
 import { Button } from '@/src/components/atoms/Button';
 import { Input } from '@/src/components/atoms/Input';
@@ -19,6 +19,7 @@ export const RegisterForm = () => {
 
 	const { register } = useAuth();
 	const router = useRouter();
+	const pathname = usePathname();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -60,7 +61,9 @@ export const RegisterForm = () => {
 					<p className="mt-2 text-center text-sm text-gray-600">
 						Or{' '}
 						<a
-							href="/login"
+							href={`/login?redirect=${encodeURIComponent(
+								pathname
+							)}`}
 							className="font-medium text-indigo-600 hover:text-indigo-500"
 						>
 							sign in to your existing account

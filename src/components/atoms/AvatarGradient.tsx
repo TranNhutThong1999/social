@@ -1,7 +1,7 @@
 import { generateAvatarColor } from '@/src/utils';
 
 export interface AvatarGradientProps {
-	postId: number;
+	postId: number | string;
 	authorName: string;
 }
 const AvatarGradient = ({ postId, authorName }: AvatarGradientProps) => {
@@ -9,8 +9,8 @@ const AvatarGradient = ({ postId, authorName }: AvatarGradientProps) => {
 	const darkColor = generateAvatarColor(authorName, true);
 
 	return (
-		<div className="flex items-center sm:mr-6 justify-center">
-			<div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full overflow-hidden mr-2 sm:mr-3">
+		<aside className="flex items-center sm:mr-6 justify-center">
+			<figure className="w-6 h-6 sm:w-8 sm:h-8 rounded-full overflow-hidden mr-2 sm:mr-3">
 				<svg
 					className="w-full h-full"
 					viewBox="0 0 100 100"
@@ -50,11 +50,9 @@ const AvatarGradient = ({ postId, authorName }: AvatarGradientProps) => {
 						opacity="0.9"
 					/>
 				</svg>
-			</div>
-			<span className="text-sm sm:text-base text-gray-500">
-				{authorName}
-			</span>
-		</div>
+			</figure>
+			<p className="text-sm sm:text-base text-gray-500">{authorName}</p>
+		</aside>
 	);
 };
 

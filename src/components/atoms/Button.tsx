@@ -74,15 +74,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				{...props}
 			>
 				{isLoading ? (
-					<div className="flex items-center justify-center space-x-2">
+					<aside className="flex items-center justify-center space-x-2">
 						<LoadingSpinner />
-						<span>{loadingText || 'Loading...'}</span>
-					</div>
+						<p>{loadingText || 'Loading...'}</p>
+					</aside>
 				) : (
 					<>
-						{leftIcon && <span className="mr-2">{leftIcon}</span>}
+						{leftIcon && (
+							<figure className="mr-2">{leftIcon}</figure>
+						)}
 						{children}
-						{rightIcon && <span className="ml-2">{rightIcon}</span>}
+						{rightIcon && (
+							<figure className="ml-2">{rightIcon}</figure>
+						)}
 					</>
 				)}
 			</button>

@@ -16,38 +16,41 @@ export function PostDetails(props: IProps) {
 
 	if (isLoading) {
 		return (
-			<div className="flex justify-center py-8">
+			<section className="flex flex-col  justify-center py-8">
 				<LoadingSpinner />
-			</div>
+				<p className="text-sm text-gray-500 font-medium mt-4 text-center">
+					Loading amazing content...
+				</p>
+			</section>
 		);
 	}
 
 	if (error) {
 		return (
-			<div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+			<aside className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
 				{error}
-			</div>
+			</aside>
 		);
 	}
 
 	if (!post) {
 		return (
-			<div className="text-center py-8 text-gray-500">
+			<section className="text-center py-8 text-gray-500">
 				Post not found.
-			</div>
+			</section>
 		);
 	}
 
 	return (
 		<main className="container mx-auto">
-			<div className="lg:max-w-6xl mx-auto">
-				<div className="fade-in">
-					<div className="bg-white rounded-xl shadow-lg overflow-hidden">
+			<article className="lg:max-w-6xl mx-auto">
+				<section className="fade-in">
+					<article className="bg-white rounded-xl shadow-lg overflow-hidden">
 						<PostDetailContent post={post} />
 						<CommentsSection postId={post.id} />
-					</div>
-				</div>
-			</div>
+					</article>
+				</section>
+			</article>
 		</main>
 	);
 }

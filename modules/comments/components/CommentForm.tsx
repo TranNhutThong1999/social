@@ -1,19 +1,18 @@
 'use client';
 
+import { Button } from '@/src/components/atoms/Button';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CreateCommentData } from '../types';
 import toast from 'react-hot-toast';
 import { commentsApi } from '../services/comments.api';
-import { Button } from '@/src/components/atoms/Button';
+import { CreateCommentData } from '../types';
 
 interface CommentFormProps {
 	postId: string;
-	onCommentAdded?: () => void;
 }
 
-export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
+export function CommentForm({ postId }: CommentFormProps) {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const queryClient = useQueryClient();
 
@@ -31,11 +30,14 @@ export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
 			queryClient.invalidateQueries({ queryKey: ['comments', postId] });
 			queryClient.invalidateQueries({ queryKey: ['posts'] });
 			reset({ body: '' });
-			onCommentAdded?.();
 			toast.success('Comment added!');
 		},
 		onError: (error: any) => {
-			toast.error(error.message || 'Failed to add comment');
+			if (error.message?.includes('Authentication required')) {
+				toast.error('Please login to comment');
+			} else {
+				toast.error(error.message || 'Failed to add comment');
+			}
 		},
 	});
 
@@ -52,8 +54,8 @@ export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
 	};
 
 	return (
-		<div className="mb-8">
-			<div className="bg-gray-50 rounded-lg p-4">
+		<section className="mb-8">
+			<article className="bg-gray-50 rounded-lg p-4">
 				<textarea
 					{...register('body', {
 						required: 'Please enter a comment',
@@ -76,7 +78,7 @@ export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
 						{errors.body.message}
 					</p>
 				)}
-				<div className="flex justify-end mt-3">
+				<footer className="flex justify-end mt-3">
 					<Button
 						type="button"
 						onClick={handleSubmit(onSubmit)}
@@ -85,8 +87,8 @@ export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
 					>
 						{isSubmitting ? 'Submitting...' : 'Submit'}
 					</Button>
-				</div>
-			</div>
-		</div>
+				</footer>
+			</article>
+		</section>
 	);
 }

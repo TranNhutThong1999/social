@@ -6,6 +6,7 @@ export const authApi = {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     try {
       const response = await apiClient.post('/auth/login', credentials);
+      
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -18,6 +19,7 @@ export const authApi = {
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
     try {
       const response = await apiClient.post('/auth/register', credentials);
+      
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -29,6 +31,7 @@ export const authApi = {
 
   async getCurrentUser() {
     try {
+      
       const response = await apiClient.get('/auth/me');
       return response.data;
     } catch (error: unknown) {
@@ -39,23 +42,13 @@ export const authApi = {
     }
   },
 
-  async updateProfile(userData: Partial<User>): Promise<User> {
-    try {
-      const response = await apiClient.put('/auth/profile', userData);
-      return response.data;
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        throw new Error(error.response?.data?.message || 'Failed to update profile');
-      }
-      throw new Error('Failed to update profile');
-    }
-  },
 
   async logout(): Promise<void> {
     try {
-      await apiClient.post('/auth/logout');
+      await apiClient.post('/auth/logout', {});
     } catch (error: unknown) {
       console.warn('Logout API failed, but proceeding with logout');
+    } finally {
     }
   },
 };

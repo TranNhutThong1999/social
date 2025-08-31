@@ -36,14 +36,14 @@ export function Pagination({
 	};
 
 	return (
-		<div className="flex flex-col items-center space-y-4">
+		<nav className="flex flex-col items-center space-y-4">
 			{/* Page Info */}
-			<div className="text-sm text-gray-600">
+			<p className="text-sm text-gray-600">
 				Page {currentPage} of {totalPages}
-			</div>
+			</p>
 
 			{/* Pagination Controls */}
-			<div className="flex items-center space-x-1 sm:space-x-2">
+			<section className="flex items-center space-x-1 sm:space-x-2">
 				{/* Previous Button */}
 				<Button
 					variant="outline"
@@ -66,11 +66,11 @@ export function Pagination({
 						</svg>
 					}
 				>
-					<span className="hidden sm:inline">Previous</span>
+					<p className="hidden sm:inline">Previous</p>
 				</Button>
 
 				{/* Page Numbers */}
-				<div className="flex items-center space-x-1">
+				<aside className="flex items-center space-x-1">
 					{getPageNumbers().map((page) => (
 						<Button
 							key={page}
@@ -85,7 +85,7 @@ export function Pagination({
 							{page}
 						</Button>
 					))}
-				</div>
+				</aside>
 
 				{/* Next Button */}
 				<Button
@@ -109,13 +109,13 @@ export function Pagination({
 						</svg>
 					}
 				>
-					<span className="hidden sm:inline">Next</span>
+					<p className="hidden sm:inline">Next</p>
 				</Button>
-			</div>
+			</section>
 
 			{/* Quick Navigation */}
 			{totalPages > 5 && (
-				<div className="flex items-center space-x-2 text-sm">
+				<aside className="flex items-center space-x-2 text-sm">
 					<Button
 						onClick={() => onPageChange(1)}
 						disabled={currentPage === 1}
@@ -124,7 +124,7 @@ export function Pagination({
 					>
 						First
 					</Button>
-					<span className="text-gray-400">•</span>
+					<p className="text-gray-400">•</p>
 					<Button
 						onClick={() => onPageChange(totalPages)}
 						disabled={currentPage === totalPages}
@@ -133,8 +133,8 @@ export function Pagination({
 					>
 						Last
 					</Button>
-				</div>
+				</aside>
 			)}
-		</div>
+		</nav>
 	);
 }

@@ -38,10 +38,12 @@ export function Notification({
 	};
 
 	return (
-		<div
+		<aside
 			className={`fixed top-4 right-4 z-50 px-6 py-3 rounded-lg text-white font-medium fade-in ${getTypeStyles()}`}
+			role="alert"
+			aria-live="polite"
 		>
 			{message}
-		</div>
+		</aside>
 	);
 }

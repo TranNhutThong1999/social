@@ -30,9 +30,9 @@ export default function LoginPage() {
 			toast.success('Login was successful!');
 			const redirectTo = searchParams.get('redirect');
 			if (redirectTo) {
-				router.push(redirectTo);
+				router.replace(redirectTo);
 			} else {
-				router.push('/');
+				router.replace('/');
 			}
 		},
 		onError: (error: any) => {
@@ -51,12 +51,12 @@ export default function LoginPage() {
 
 	return (
 		<main>
-			<div className="max-w-md mx-auto">
-				<div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 fade-in">
-					<h2 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800">
+			<article className="max-w-md mx-auto">
+				<section className="bg-white rounded-xl shadow-lg p-6 sm:p-8 fade-in">
+					<h1 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800">
 						Sign in
-					</h2>
-					<div className="space-y-4">
+					</h1>
+					<form className="space-y-4">
 						<Input
 							autoFocus
 							type="email"
@@ -93,22 +93,24 @@ export default function LoginPage() {
 						>
 							Sign in
 						</Button>
-					</div>
+					</form>
 					<p className="text-center mt-4 text-gray-600 text-sm sm:text-base">
 						Don't have an account?{' '}
 						<Link
-							href="/register"
+							href={`/register?redirect=${encodeURIComponent(
+								searchParams.get('redirect') || '/'
+							)}`}
 							className="text-indigo-600 hover:underline"
 						>
 							Sign up now
 						</Link>
 					</p>
 
-					<div className="mt-6 p-3 sm:p-4 bg-indigo-50 rounded-lg">
-						<h3 className="font-medium text-indigo-900 mb-2 text-sm sm:text-base">
+					<aside className="mt-6 p-3 sm:p-4 bg-indigo-50 rounded-lg">
+						<h2 className="font-medium text-indigo-900 mb-2 text-sm sm:text-base">
 							Demo Accounts
-						</h3>
-						<div className="text-xs sm:text-sm text-indigo-800 space-y-1">
+						</h2>
+						<section className="text-xs sm:text-sm text-indigo-800 space-y-1">
 							<p>
 								Email: john@example.com | Password: password123
 							</p>
@@ -119,10 +121,10 @@ export default function LoginPage() {
 									Email: bob@example.com | Password:
 									password123
 								</p> */}
-						</div>
-					</div>
-				</div>
-			</div>
+						</section>
+					</aside>
+				</section>
+			</article>
 		</main>
 	);
 }

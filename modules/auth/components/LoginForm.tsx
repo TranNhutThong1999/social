@@ -57,7 +57,9 @@ export const LoginForm = () => {
 					<p className="mt-2 text-center text-sm text-gray-600">
 						Or{' '}
 						<a
-							href="/register"
+							href={`/register?redirect=${encodeURIComponent(
+								searchParams.get('redirect') || '/'
+							)}`}
 							className="font-medium text-indigo-600 hover:text-indigo-500"
 						>
 							create a new account

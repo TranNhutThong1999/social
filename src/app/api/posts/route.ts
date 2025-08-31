@@ -15,7 +15,6 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '6');
 
-    console.log('Search params:', { search, sortBy, sortOrder, page, limit });
 
     // const commentsCount: Record<number, any[]> = comments.reduce((acc, comment) => {
     //   const postId = comment.postId;

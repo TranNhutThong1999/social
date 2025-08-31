@@ -30,31 +30,4 @@ export const commentsApi = {
       throw new Error('Failed to create comment');
     }
   },
-
-  // Delete a comment
-  async deleteComment(postId: string, commentId: string): Promise<void> {
-    try {
-      await apiClient.delete(`/posts/${postId}/comments/${commentId}`);
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        throw new Error(error.response?.data?.message || 'Failed to delete comment');
-      }
-      throw new Error('Failed to delete comment');
-    }
-  },
-
-  // Update a comment
-  async updateComment(postId: string, commentId: string, body: string): Promise<Comment> {
-    try {
-      const response = await apiClient.put(`/posts/${postId}/comments/${commentId}`, {
-        body,
-      });
-      return response.data;
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        throw new Error(error.response?.data?.message || 'Failed to update comment');
-      }
-      throw new Error('Failed to update comment');
-    }
-  },
-};
+}

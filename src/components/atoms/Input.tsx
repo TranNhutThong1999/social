@@ -46,7 +46,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 				: 'px-3 sm:px-4';
 
 		return (
-			<div className={widthClass}>
+			<fieldset className={widthClass}>
 				{label && (
 					<label
 						htmlFor={inputId}
@@ -58,11 +58,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 						)}
 					</label>
 				)}
-				<div className="relative">
+				<aside className="relative">
 					{leftIcon && (
-						<div className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+						<figure className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
 							{leftIcon}
-						</div>
+						</figure>
 					)}
 					<input
 						ref={ref}
@@ -77,13 +77,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 						{...props}
 					/>
 					{rightIcon && (
-						<div className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+						<figure className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 text-gray-400">
 							{rightIcon}
-						</div>
+						</figure>
 					)}
-				</div>
+				</aside>
 				{error && <p className="text-red-600 text-sm mt-1">{error}</p>}
-			</div>
+			</fieldset>
 		);
 	}
 );

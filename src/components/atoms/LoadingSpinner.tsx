@@ -29,21 +29,21 @@ export function LoadingSpinner({ size = 'sm' }: LoadingSpinnerProps) {
 	const sizeConfig = sizeClasses[size];
 
 	return (
-		<div className="flex flex-col items-center justify-center space-y-4">
-			<div className="relative">
+		<aside className="flex flex-col items-center justify-center space-y-4">
+			<figure className="relative">
 				{/* Outer ring */}
-				<div
+				<aside
 					className={`${sizeConfig.container} ${sizeConfig.border} border-indigo-200 rounded-full animate-pulse`}
-				></div>
+				></aside>
 				{/* Inner spinning ring */}
-				<div
+				<aside
 					className={`absolute top-0 left-0 ${sizeConfig.container} ${sizeConfig.border} border-transparent border-t-indigo-500 border-r-purple-500 rounded-full animate-spin`}
-				></div>
+				></aside>
 				{/* Center dot */}
-				<div
+				<aside
 					className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${sizeConfig.dot} bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-pulse`}
-				></div>
-			</div>
-		</div>
+				></aside>
+			</figure>
+		</aside>
 	);
 }

@@ -7,23 +7,19 @@ import { PostsFilter, CreatePostData, UpdatePostData } from '@/src/types/types';
 
 
 export const usePosts = (params: PostsFilter) => {
-  const FiveMinutes =  5 * 60 * 1000
   
   return useQuery({
     queryKey: ['posts', params],
     queryFn: () => postsApi.getPosts(params),
-    staleTime: FiveMinutes
   });
 };
 
 export const usePost = (id: string, enabled: boolean = true) => {
-  const FiveMinutes =  5 * 60 * 1000
 
   return useQuery({
     queryKey: ['post', id],
     queryFn: () => postsApi.getPost(id),
     enabled: !!id && enabled,
-    staleTime: FiveMinutes
   });
 };
 

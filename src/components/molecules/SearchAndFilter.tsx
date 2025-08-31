@@ -147,12 +147,12 @@ export function SearchAndFilter({
 		'w-full sm:w-auto appearance-none bg-white px-3 sm:px-4 py-3 sm:py-3.5 pr-10 sm:pr-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 hover:border-indigo-300 cursor-pointer text-gray-700 font-medium text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed';
 
 	return (
-		<div
+		<aside
 			className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-6 sm:mb-8 ${className}`}
 		>
-			<div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:gap-4 lg:items-center">
+			<section className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:gap-4 lg:items-center">
 				{/* Search Input */}
-				<div className="flex-1 w-full">
+				<fieldset className="flex-1 w-full">
 					<Input
 						type="text"
 						placeholder={placeholder}
@@ -175,11 +175,11 @@ export function SearchAndFilter({
 						fullWidth={true}
 						className="bg-gray-50 focus:bg-white placeholder-gray-500"
 					/>
-				</div>
+				</fieldset>
 
-				<div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
-					<div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
-						<div className="relative group">
+				<aside className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
+					<aside className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
+						<fieldset className="relative group">
 							<select
 								value={filter.sortBy}
 								onChange={handleSortByChange}
@@ -195,13 +195,13 @@ export function SearchAndFilter({
 									</option>
 								))}
 							</select>
-							<div className="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4 pointer-events-none">
+							<figure className="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4 pointer-events-none">
 								<DropdownIcon />
-							</div>
-						</div>
+							</figure>
+						</fieldset>
 
 						{/* Sort Order */}
-						<div className="relative group">
+						<fieldset className="relative group">
 							<select
 								value={filter.sortOrder}
 								onChange={handleSortOrderChange}
@@ -217,11 +217,11 @@ export function SearchAndFilter({
 									</option>
 								))}
 							</select>
-							<div className="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4 pointer-events-none">
+							<figure className="absolute inset-y-0 right-0 flex items-center pr-3 sm:pr-4 pointer-events-none">
 								<DropdownIcon />
-							</div>
-						</div>
-					</div>
+							</figure>
+						</fieldset>
+					</aside>
 
 					<Button
 						onClick={handleSearch}
@@ -234,8 +234,8 @@ export function SearchAndFilter({
 					>
 						Search
 					</Button>
-				</div>
-			</div>
-		</div>
+				</aside>
+			</section>
+		</aside>
 	);
 }

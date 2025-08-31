@@ -33,12 +33,10 @@ export const useAuth = () => {
   const logout = useCallback(async () => {
     try {
       await authApi.logout();
-      logoutStore();
-      router.push('/');
     } catch (error) {
       console.error('Logout error:', error);
+    } finally {
       logoutStore();
-      router.push('/');
     }
   }, [logoutStore, router]);
 

@@ -9,7 +9,7 @@ import { LoadingSpinner } from '@/src/components/atoms/LoadingSpinner';
 import { useAuthStore } from '@/src/stores/auth';
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -18,8 +18,10 @@ type OnSubmitHandler = (data: RegisterCredentials) => Promise<void>;
 
 export default function RegisterPage() {
 	const router = useRouter();
+	const searchParams = useSearchParams();
 	const { login } = useAuthStore();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const pathname = usePathname();
 
 	const {
 		register,
@@ -35,7 +37,12 @@ export default function RegisterPage() {
 		onSuccess: (data: AuthResponse) => {
 			login(data.user);
 			toast.success('Registration successful!');
-			router.push('/');
+			const redirectTo = searchParams.get('redirect');
+			if (redirectTo) {
+				router.push(redirectTo);
+			} else {
+				router.push('/');
+			}
 		},
 		onError: (error: any) => {
 			toast.error(error.response?.data?.error || 'Registration failed');
@@ -53,11 +60,11 @@ export default function RegisterPage() {
 
 	return (
 		<main>
-			<div className="max-w-md mx-auto">
-				<div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 fade-in">
-					<h2 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800">
+			<article className="max-w-md mx-auto">
+				<section className="bg-white rounded-xl shadow-lg p-6 sm:p-8 fade-in">
+					<h1 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800">
 						Sign up
-					</h2>
+					</h1>
 					<form
 						onSubmit={handleSubmit(onSubmit)}
 						className="space-y-4"
@@ -123,10 +130,10 @@ export default function RegisterPage() {
 
 						<Button type="submit" disabled={isLoading} fullWidth>
 							{isLoading ? (
-								<div className="flex items-center justify-center space-x-2">
+								<aside className="flex items-center justify-center space-x-2">
 									<LoadingSpinner />
-									<span>Processing...</span>
-								</div>
+									<p>Processing...</p>
+								</aside>
 							) : (
 								'Sign up'
 							)}
@@ -135,14 +142,16 @@ export default function RegisterPage() {
 					<p className="text-center mt-4 text-gray-600 text-sm sm:text-base">
 						Do you already have an account?{' '}
 						<Link
-							href="/login"
+							href={`/login?redirect=${encodeURIComponent(
+								pathname
+							)}`}
 							className="text-indigo-600 hover:underline"
 						>
 							Sign in
 						</Link>
 					</p>
-				</div>
-			</div>
+				</section>
+			</article>
 		</main>
 	);
 }

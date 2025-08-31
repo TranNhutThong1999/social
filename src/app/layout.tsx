@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { Toaster } from 'react-hot-toast';
 import './globals.css';
 import { Providers } from '@/modules/auth/providers/Providers';
+import { Header } from '../components/organisms/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,7 +37,14 @@ export default async function RootLayout({
 				/>
 			</head>
 			<body className={inter.className}>
-				<Providers token={token}>{children}</Providers>
+				<Providers token={token}>
+					<article className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+						<Header />
+						<main className="container mx-auto px-4 py-5 sm:py-12 max-w-6xl">
+							{children}
+						</main>
+					</article>
+				</Providers>
 				<Toaster
 					position="top-right"
 					toastOptions={{
