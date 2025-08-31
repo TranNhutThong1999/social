@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiClient } from '../../shared/lib/axios';
+import { apiClient } from '../../api/axios';
 import { LoginCredentials, RegisterCredentials, User, AuthResponse } from '../types';
 
 export const authApi = {

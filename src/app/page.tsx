@@ -1,7 +1,7 @@
 'use client';
 
-import { PostList } from '@/src/app/(protected)/posts/[id]/components/PostList';
-import { usePosts } from '@/src/app/(protected)/posts/[id]/hooks/usePosts';
+import { PostList } from '@/modules/posts/components/PostList';
+import { usePosts } from '@/modules/posts/hooks/usePosts';
 import { useQueryParams } from '@/src/hooks/useQueryParams';
 import { Header } from '../components/organisms/Header';
 import { SearchAndFilter } from '../components/molecules/SearchAndFilter';
@@ -10,13 +10,7 @@ import { Pagination } from '../components/molecules/Pagination';
 
 export default function HomePage() {
 	const { getParams, setParams } = useQueryParams();
-	const {
-		page = 1,
-		limit = 6,
-		sortBy = 'createdAt',
-		sortOrder = 'desc',
-		search = '',
-	} = getParams();
+	const { page, limit, sortBy, sortOrder, search } = getParams();
 	const { data, isLoading, error } = usePosts({
 		search,
 		page,
@@ -25,15 +19,11 @@ export default function HomePage() {
 		sortOrder,
 	});
 
-	const handleSearch = (search: any) => {
+	const handleSearch = (search: any): void => {
 		setParams({ ...search, page: 1 });
 	};
 
-	const handleSort = (sortBy: string, sortOrder: 'asc' | 'desc') => {
-		setParams({ sortBy: sortBy, sortOrder, page: 1 });
-	};
-
-	const handlePageChange = (page: number) => {
+	const handlePageChange = (page: number): void => {
 		setParams({ page });
 	};
 
@@ -83,14 +73,11 @@ export default function HomePage() {
 		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
 			<Header />
 
-			<main className="container mx-auto px-4 py-6 sm:py-12">
+			<main className="container mx-auto px-4 py-5 sm:py-12 max-w-6xl">
 				<div className="max-w-7xl mx-auto">
 					<SearchAndFilter
-						onFiltersChange={handleSearch}
-						onSort={handleSort}
-						currentSort={sortBy}
-						currentOrder={sortOrder}
-						initialSearch={search}
+						onChange={handleSearch}
+						value={{ search, sortBy, sortOrder }}
 					/>
 
 					{isLoading ? (

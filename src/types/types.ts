@@ -12,9 +12,7 @@ export interface Post {
     username: string;
     avatar?: string;
   };
-  _count?: {
-    comments: number;
-  };
+  commentsCount?:number
 }
 
 export interface Comment {
@@ -49,7 +47,7 @@ export interface UpdatePostData {
 
 export interface PostsFilter {
   search?: string;
-  sortBy?: 'createdAt' | 'title' | 'comments';
+  sortBy?: 'createdAt' | 'comments';
   sortOrder?: 'asc' | 'desc';
   page?: number;
   limit?: number;

@@ -1,7 +1,7 @@
 'use client';
 
 import { LoadingSpinner } from '@/src/components/atoms/LoadingSpinner';
-import { Post } from '../../../../../types/types';
+import { Post } from '../../../src/types/types';
 import { PostCard } from './PostCard';
 
 interface IProps {

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { comments } from '@/modules/shared/data/comments';
-import { requireAuth } from '@/modules/shared/lib/auth';
+import { comments } from '@/src/mocks/comments';
+import { requireAuth } from '@/src/mocks/auth';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const resolvedParams = await params; 
@@ -31,7 +31,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Verify authentication using cookie
@@ -71,7 +71,6 @@ export async function POST(
       },
     };
 
-    // Add to comments array (in real app, this would be saved to database)
     comments.push(newComment);
 
     return NextResponse.json(newComment, { status: 201 });

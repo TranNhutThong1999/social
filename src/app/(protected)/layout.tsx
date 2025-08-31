@@ -1,3 +1,7 @@
+'use client';
+
+import { Header } from '@/src/components';
+
 export default function ProtectedLayout({
 	children,
 }: {
@@ -5,7 +9,10 @@ export default function ProtectedLayout({
 }) {
 	return (
 		<div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-			{children}
+			<Header />
+			<main className="container mx-auto px-4 py-5 sm:py-12 max-w-6xl">
+				{children}
+			</main>
 		</div>
 	);
 }

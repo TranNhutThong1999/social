@@ -7,7 +7,7 @@ import {
 	useQuery,
 } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
-import { useAuthStore } from '../store/auth';
+import { useAuthStore } from '@/src/stores/auth';
 
 interface ProvidersProps {
 	children: React.ReactNode;

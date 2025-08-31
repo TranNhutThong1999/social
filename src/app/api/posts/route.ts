@@ -1,4 +1,5 @@
-import { posts } from '@/modules/shared/data/posts';
+import { comments } from '@/src/mocks/comments';
+import { posts } from '@/src/mocks/posts';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -11,8 +12,18 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '6');
 
-    let filteredPosts = [...posts];
-
+    // const commentsCount: Record<number, any[]> = comments.reduce((acc, comment) => {
+    //   const postId = comment.postId;
+      
+    //   if (!acc[postId]) {
+    //     acc[postId] = [];
+    //   }
+    //   acc[postId].push(comment);
+      
+    //   return acc;
+    // }, {} as Record<number, any[]>);
+    let filteredPosts = [...posts]
+    
     // Apply search filter
     if (search) {
       const searchLower = search.toLowerCase();
@@ -35,8 +46,8 @@ export async function GET(request: NextRequest) {
           bValue = b.title.toLowerCase();
           break;
         case 'comments':
-          aValue = a._count?.comments || 0;
-          bValue = b._count?.comments || 0;
+          aValue = a.commentsCount || 0;
+          bValue = b.commentsCount || 0;
           break;
         case 'createdAt':
         default:

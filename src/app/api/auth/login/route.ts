@@ -1,4 +1,4 @@
-import { userCredentials, users } from '@/modules/shared/data/users';
+import { userCredentials, users } from '@/src/mocks/users';
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 

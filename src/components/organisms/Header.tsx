@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { useAuthStore } from '@/modules/shared/store/auth';
+import { useAuthStore } from '@/src/stores/auth';
 import { useAuth } from '@/modules/auth/hooks/useAuth';
 
 export function Header() {

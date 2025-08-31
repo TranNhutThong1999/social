@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CreateCommentData } from '../types';
 import toast from 'react-hot-toast';
 import { commentsApi } from '../services/comments.api';
+import { Button } from '@/src/components/atoms/Button';
 
 interface CommentFormProps {
 	postId: string;
@@ -76,14 +77,14 @@ export function CommentForm({ postId, onCommentAdded }: CommentFormProps) {
 					</p>
 				)}
 				<div className="flex justify-end mt-3">
-					<button
+					<Button
 						type="button"
 						onClick={handleSubmit(onSubmit)}
 						disabled={isSubmitting}
 						className=" cursor-pointer  bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2.5 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium"
 					>
 						{isSubmitting ? 'Submitting...' : 'Submit'}
-					</button>
+					</Button>
 				</div>
 			</div>
 		</div>

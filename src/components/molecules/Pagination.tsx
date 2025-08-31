@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from '../atoms';
+
 interface PaginationProps {
 	currentPage: number;
 	totalPages: number;
@@ -43,11 +45,12 @@ export function Pagination({
 			{/* Pagination Controls */}
 			<div className="flex items-center space-x-1 sm:space-x-2">
 				{/* Previous Button */}
-				{currentPage > 1 && (
-					<button
-						onClick={() => onPageChange(currentPage - 1)}
-						className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-indigo-300 transition-all duration-200 font-medium shadow-sm hover:shadow-md text-sm sm:text-base"
-					>
+				<Button
+					variant="outline"
+					disabled={currentPage <= 1}
+					onClick={() => onPageChange(currentPage - 1)}
+					className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl"
+					leftIcon={
 						<svg
 							className="w-3 h-3 sm:w-4 sm:h-4"
 							fill="none"
@@ -61,34 +64,36 @@ export function Pagination({
 								d="M15 19l-7-7 7-7"
 							/>
 						</svg>
-						<span className="hidden sm:inline">Previous</span>
-					</button>
-				)}
+					}
+				>
+					<span className="hidden sm:inline">Previous</span>
+				</Button>
 
 				{/* Page Numbers */}
 				<div className="flex items-center space-x-1">
 					{getPageNumbers().map((page) => (
-						<button
+						<Button
 							key={page}
 							onClick={() => onPageChange(page)}
-							className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl font-medium transition-all duration-200 text-sm sm:text-base ${
-								page === currentPage
-									? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
-									: 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-indigo-300 shadow-sm hover:shadow-md'
+							variant={
+								page === currentPage ? 'primary' : 'outline'
+							}
+							className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl ${
+								page === currentPage ? '' : 'hover:bg-gray-50'
 							}`}
 						>
 							{page}
-						</button>
+						</Button>
 					))}
 				</div>
 
 				{/* Next Button */}
-				{currentPage < totalPages && (
-					<button
-						onClick={() => onPageChange(currentPage + 1)}
-						className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-white text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-indigo-300 transition-all duration-200 font-medium shadow-sm hover:shadow-md text-sm sm:text-base"
-					>
-						<span className="hidden sm:inline">Next</span>
+				<Button
+					variant="outline"
+					onClick={() => onPageChange(currentPage + 1)}
+					disabled={currentPage >= totalPages}
+					className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl"
+					rightIcon={
 						<svg
 							className="w-3 h-3 sm:w-4 sm:h-4"
 							fill="none"
@@ -102,36 +107,32 @@ export function Pagination({
 								d="M9 5l7 7-7 7"
 							/>
 						</svg>
-					</button>
-				)}
+					}
+				>
+					<span className="hidden sm:inline">Next</span>
+				</Button>
 			</div>
 
 			{/* Quick Navigation */}
 			{totalPages > 5 && (
 				<div className="flex items-center space-x-2 text-sm">
-					<button
+					<Button
 						onClick={() => onPageChange(1)}
 						disabled={currentPage === 1}
-						className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200 text-xs sm:text-sm ${
-							currentPage === 1
-								? 'text-gray-400 cursor-not-allowed'
-								: 'text-indigo-600 hover:bg-indigo-50'
-						}`}
+						variant="ghost"
+						className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm"
 					>
 						First
-					</button>
+					</Button>
 					<span className="text-gray-400">•</span>
-					<button
+					<Button
 						onClick={() => onPageChange(totalPages)}
 						disabled={currentPage === totalPages}
-						className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200 text-xs sm:text-sm ${
-							currentPage === totalPages
-								? 'text-gray-400 cursor-not-allowed'
-								: 'text-indigo-600 hover:bg-indigo-50'
-						}`}
+						variant="ghost"
+						className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm"
 					>
 						Last
-					</button>
+					</Button>
 				</div>
 			)}
 		</div>

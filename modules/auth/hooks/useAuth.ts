@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/modules/shared/store/auth';
+import { useAuthStore } from '@/src/stores/auth';
 import { authApi } from '../services/auth.api';
 import { LoginCredentials, RegisterCredentials } from '../types';
 

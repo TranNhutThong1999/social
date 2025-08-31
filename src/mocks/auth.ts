@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-import { users } from '@/modules/shared/data/users';
+import { users } from '@/src/mocks/users';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { posts } from '@/modules/shared/data/posts';
-import { verifyAuthToken } from '@/modules/shared/lib/auth';
+import { posts } from '@/src/mocks/posts';
+import { verifyAuthToken } from '@/src/mocks/auth';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const resolvedParams = await params; 
