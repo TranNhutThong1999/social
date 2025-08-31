@@ -9,7 +9,6 @@ export function Header() {
 	const { user, isAuthenticated } = useAuthStore();
 	const { logout } = useAuth();
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
 	return (
 		<header className="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 sticky top-0 z-50">
 			<div className="container mx-auto px-4 py-4 lg:max-w-7xl ">
