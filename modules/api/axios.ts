@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+// Use relative URL for API calls to work on both development and production
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 export const apiClient: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -8,7 +9,7 @@ export const apiClient: AxiosInstance = axios.create({
     'Content-Type': 'application/json',
   },
   timeout: 10000, 
-  withCredentials: true, 
+  // Remove withCredentials to avoid CORS issues on Netlify
 });
 
 export default apiClient;

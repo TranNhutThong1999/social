@@ -17,6 +17,8 @@ export async function OPTIONS(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    console.log('Posts API called:', request.url);
+    
     const { searchParams } = new URL(request.url);
     
     const search = searchParams.get('search') || '';
@@ -24,6 +26,8 @@ export async function GET(request: NextRequest) {
     const sortOrder = searchParams.get('sortOrder') || 'desc';
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '6');
+
+    console.log('Search params:', { search, sortBy, sortOrder, page, limit });
 
     // const commentsCount: Record<number, any[]> = comments.reduce((acc, comment) => {
     //   const postId = comment.postId;
@@ -83,6 +87,8 @@ export async function GET(request: NextRequest) {
     const endIndex = startIndex + limit;
     const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
 
+    console.log(`Returning ${paginatedPosts.length} posts out of ${total} total`);
+
     const response = NextResponse.json({
       posts: paginatedPosts,
       total,
@@ -100,7 +106,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Get posts error:', error);
     const errorResponse = NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
     

@@ -25,10 +25,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Enable experimental features for better Netlify compatibility
-  experimental: {
-    serverComponentsExternalPackages: [],
-  },
 };
 
 export default nextConfig;
