@@ -83,7 +83,7 @@ export default function HomePage() {
 					<PostList posts={data?.posts || []} isLoading={isLoading} />
 
 					{data && data.totalPages > 1 && (
-						<nav className="mt-8 sm:mt-12">
+						<nav className="mt-6 sm:mt-8">
 							<Pagination
 								currentPage={data.page}
 								totalPages={data.totalPages}

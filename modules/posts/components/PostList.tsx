@@ -30,7 +30,7 @@ export function PostList(props: IProps) {
 
 	return (
 		<article className="space-y-6">
-			<section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+			<section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 auto-rows-fr">
 				{posts.map((post) => (
 					<PostCard key={post.id} post={post} />
 				))}

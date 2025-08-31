@@ -6,7 +6,7 @@ export const commentsApi = {
   // Get comments for a post
   async getComments(postId: string): Promise<Comment[]> {
     try {
-      const response = await apiClient.get(`/posts/${postId}/comments`);
+      const response = await apiClient.get(`/post/${postId}/comments`);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -19,7 +19,7 @@ export const commentsApi = {
   // Create a new comment
   async createComment(data: CreateCommentData): Promise<Comment> {
     try {
-      const response = await apiClient.post(`/posts/${data.postId}/comments`, {
+      const response = await apiClient.post(`/post/${data.postId}/comments`, {
         body: data.body,
       });
       return response.data;

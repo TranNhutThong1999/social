@@ -31,7 +31,7 @@ export const LoginForm = () => {
 			if (redirectTo) {
 				router.push(redirectTo);
 			} else {
-				router.push('/posts');
+				router.push('/');
 			}
 		} else {
 			setError(result.error || 'Login failed');

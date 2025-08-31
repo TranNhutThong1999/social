@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// const PROTECTED_ROUTES = ['/posts'];
+// const PROTECTED_ROUTES = ['/post'];
 const AUTH_ROUTES = ['/login', '/register'];
 const AUTH_TOKEN_COOKIE = 'auth-token';
 

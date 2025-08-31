@@ -16,8 +16,8 @@ export function PostDetails(props: IProps) {
 
 	if (isLoading) {
 		return (
-			<section className="flex flex-col  justify-center py-8">
-				<LoadingSpinner />
+			<section className="flex flex-col justify-center py-8">
+				<LoadingSpinner size="lg" />
 				<p className="text-sm text-gray-500 font-medium mt-4 text-center">
 					Loading amazing content...
 				</p>

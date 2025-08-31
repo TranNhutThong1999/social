@@ -14,9 +14,9 @@ export function PostCard({ post }: PostCardProps) {
 	const authorName = post.author?.name || 'Unknown';
 	const commentsCount = post.commentsCount || 0;
 	return (
-		<Link href={`/posts/${post.id}`}>
-			<article className="group">
-				<article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:border-indigo-200 transition-all duration-300 transform hover:-translate-y-1">
+		<Link href={`/post/${post.id}`}>
+			<article className="group h-full">
+				<article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:border-indigo-200 transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
 					{/* Card Header with Gradient */}
 					<header className="bg-gradient-to-r from-indigo-50 to-purple-50 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100">
 						<h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200">
@@ -47,13 +47,13 @@ export function PostCard({ post }: PostCardProps) {
 					</header>
 
 					{/* Card Body */}
-					<section className="p-4 sm:p-6">
-						<p className="text-gray-600 mb-4 sm:mb-6 line-clamp-3 leading-relaxed text-sm sm:text-base">
+					<section className="p-4 sm:p-6 flex-grow flex flex-col">
+						<p className="text-gray-600 mb-4 sm:mb-6 line-clamp-3 leading-relaxed text-sm sm:text-base flex-grow">
 							{post.body}
 						</p>
 
 						{/* Card Footer */}
-						<footer className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0 pt-3 sm:pt-4 border-t border-gray-100">
+						<footer className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0 pt-3 sm:pt-4 border-t border-gray-100 mt-auto">
 							<aside className="flex items-center space-x-4">
 								<span className="flex items-center text-xs sm:text-sm text-gray-500 bg-gray-50 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
 									<svg

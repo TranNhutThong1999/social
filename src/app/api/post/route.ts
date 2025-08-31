@@ -1,4 +1,3 @@
-import { comments } from '@/src/mocks/comments';
 import { posts } from '@/src/mocks/posts';
 import { NextRequest, NextResponse } from 'next/server';
 

@@ -36,7 +36,7 @@ export const RegisterForm = () => {
 		const result = await register(registerData as any);
 
 		if (result.success) {
-			router.push('/posts');
+			router.push('/');
 		} else {
 			setError(result.error || 'Registration failed');
 		}

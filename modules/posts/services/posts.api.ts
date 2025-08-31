@@ -14,7 +14,7 @@ export const postsApi = {
       if (filters.page) params.append('page', filters.page.toString());
       if (filters.limit) params.append('limit', filters.limit.toString());
 
-      const response = await apiClient.get(`/posts?${params.toString()}`);
+      const response = await apiClient.get(`/post?${params.toString()}`);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -27,7 +27,7 @@ export const postsApi = {
   // Get single post
   async getPost(id: string): Promise<Post> {
     try {
-      const response = await apiClient.get(`/posts/${id}`);
+      const response = await apiClient.get(`/post/${id}`);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -40,7 +40,7 @@ export const postsApi = {
   // Create post
   async createPost(data: CreatePostData): Promise<Post> {
     try {
-      const response = await apiClient.post('/posts', data);
+      const response = await apiClient.post('/post', data);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -50,28 +50,4 @@ export const postsApi = {
     }
   },
 
-  // Update post
-  async updatePost(id: string, data: UpdatePostData): Promise<Post> {
-    try {
-      const response = await apiClient.put(`/posts/${id}`, data);
-      return response.data;
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        throw new Error(error.response?.data?.message || 'Failed to update post');
-      }
-      throw new Error('Failed to update post');
-    }
-  },
-
-  // Delete post
-  async deletePost(id: string): Promise<void> {
-    try {
-      await apiClient.delete(`/posts/${id}`);
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        throw new Error(error.response?.data?.message || 'Failed to delete post');
-      }
-      throw new Error('Failed to delete post');
-    }
-  },
 };

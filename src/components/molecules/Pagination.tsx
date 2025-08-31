@@ -37,14 +37,7 @@ export function Pagination({
 
 	return (
 		<nav className="flex flex-col items-center space-y-4">
-			{/* Page Info */}
-			<p className="text-sm text-gray-600">
-				Page {currentPage} of {totalPages}
-			</p>
-
-			{/* Pagination Controls */}
 			<section className="flex items-center space-x-1 sm:space-x-2">
-				{/* Previous Button */}
 				<Button
 					variant="outline"
 					disabled={currentPage <= 1}
