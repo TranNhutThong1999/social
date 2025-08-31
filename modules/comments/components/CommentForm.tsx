@@ -54,8 +54,8 @@ export function CommentForm({ postId }: CommentFormProps) {
 	};
 
 	return (
-		<section className="mb-8">
-			<article className="bg-gray-50 rounded-lg p-4">
+		<section className="mb-6 sm:mb-8">
+			<article className="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6">
 				<textarea
 					{...register('body', {
 						required: 'Please enter a comment',
@@ -69,12 +69,12 @@ export function CommentForm({ postId }: CommentFormProps) {
 						},
 					})}
 					rows={3}
-					className="w-full p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+					className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
 					placeholder="Write your comment..."
 					disabled={isSubmitting}
 				/>
 				{errors.body && (
-					<p className="text-red-600 text-sm mt-1">
+					<p className="text-red-600 text-xs sm:text-sm mt-1">
 						{errors.body.message}
 					</p>
 				)}
@@ -83,7 +83,7 @@ export function CommentForm({ postId }: CommentFormProps) {
 						type="button"
 						onClick={handleSubmit(onSubmit)}
 						disabled={isSubmitting}
-						className=" cursor-pointer  bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2.5 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium"
+						className="cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium text-xs sm:text-sm"
 					>
 						{isSubmitting ? 'Submitting...' : 'Submit'}
 					</Button>
