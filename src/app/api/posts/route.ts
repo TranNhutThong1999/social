@@ -2,6 +2,19 @@ import { comments } from '@/src/mocks/comments';
 import { posts } from '@/src/mocks/posts';
 import { NextRequest, NextResponse } from 'next/server';
 
+// Handle OPTIONS request for CORS preflight
+export async function OPTIONS(request: NextRequest) {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, PATCH',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With, Accept, Origin',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -70,17 +83,33 @@ export async function GET(request: NextRequest) {
     const endIndex = startIndex + limit;
     const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       posts: paginatedPosts,
       total,
       page,
       totalPages,
     });
+
+    // Add CORS headers to response
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
+    response.headers.set('Access-Control-Allow-Credentials', 'true');
+
+    return response;
   } catch (error) {
     console.error('Get posts error:', error);
-    return NextResponse.json(
+    const errorResponse = NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
     );
+    
+    // Add CORS headers to error response
+    errorResponse.headers.set('Access-Control-Allow-Origin', '*');
+    errorResponse.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+    errorResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
+    errorResponse.headers.set('Access-Control-Allow-Credentials', 'true');
+    
+    return errorResponse;
   }
 }
