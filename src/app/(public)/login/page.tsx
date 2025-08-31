@@ -40,7 +40,7 @@ export default function LoginPage() {
 		},
 	});
 
-	const onSubmit = async (data: LoginCredentials): void => {
+	const onSubmit = async (data: LoginCredentials) => {
 		setIsLoading(true);
 		try {
 			await loginMutation.mutateAsync(data);
