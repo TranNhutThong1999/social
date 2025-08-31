@@ -14,7 +14,6 @@ interface ProvidersProps {
 	token?: string;
 }
 
-// Custom hook for authentication check
 function useAuthCheck(token?: string) {
 	const { setAuthenticated, updateUser } = useAuthStore();
 
@@ -27,11 +26,8 @@ function useAuthCheck(token?: string) {
 		queryKey: ['auth', 'me'],
 		queryFn: authApi.getCurrentUser,
 		retry: false,
-		staleTime: 10 * 60 * 1000, // 10 minutes instead of 5
-		gcTime: 15 * 60 * 1000, // 15 minutes cache (replaces cacheTime)
-		enabled: !!token, // Only run query if token exists
-		refetchOnWindowFocus: false, // Don't refetch when window gains focus
-		refetchOnMount: false, // Don't refetch on component mount if data exists
+
+		enabled: !!token,
 	});
 
 	useEffect(() => {
@@ -62,10 +58,11 @@ export function Providers({ children, token }: ProvidersProps) {
 			new QueryClient({
 				defaultOptions: {
 					queries: {
-						staleTime: 5 * 60 * 1000, // 5 minutes
+						staleTime: 5 * 60 * 1000,
 						retry: 1,
 						refetchOnWindowFocus: false,
 						refetchOnMount: false,
+						gcTime: 10 * 60 * 1000,
 					},
 					mutations: {
 						retry: 1,
