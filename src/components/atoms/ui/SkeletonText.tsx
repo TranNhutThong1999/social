@@ -2,7 +2,7 @@ import { forwardRef, HTMLAttributes } from 'react';
 import { cn } from '../../../utils/cn';
 
 export interface SkeletonTextProps extends HTMLAttributes<HTMLDivElement> {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'custom';
   width?:
     | 'full'
     | '1/2'
@@ -25,6 +25,7 @@ const sizeClasses = {
   md: 'h-4',
   lg: 'h-6',
   xl: 'h-8',
+  custom: 'h-10',
 } as const;
 
 const widthClasses = {
