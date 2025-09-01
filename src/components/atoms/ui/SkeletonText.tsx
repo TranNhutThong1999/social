@@ -3,7 +3,17 @@ import { cn } from '../../../utils/cn';
 
 export interface SkeletonTextProps extends HTMLAttributes<HTMLDivElement> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  width?: 'full' | '1/2' | '1/3' | '2/3' | '3/4' | '4/5' | '5/6' | 'custom';
+  width?:
+    | 'full'
+    | '1/2'
+    | '1/3'
+    | '1/4'
+    | '2/3'
+    | '3/4'
+    | '4/5'
+    | '5/6'
+    | '1/6'
+    | 'custom';
   customWidth?: string;
   lines?: number;
   spacing?: 'tight' | 'normal' | 'loose';
@@ -21,10 +31,12 @@ const widthClasses = {
   full: 'w-full',
   '1/2': 'w-1/2',
   '1/3': 'w-1/3',
+  '1/4': 'w-1/4',
   '2/3': 'w-2/3',
   '3/4': 'w-3/4',
   '4/5': 'w-4/5',
   '5/6': 'w-5/6',
+  '1/6': 'w-1/6',
   custom: '',
 } as const;
 

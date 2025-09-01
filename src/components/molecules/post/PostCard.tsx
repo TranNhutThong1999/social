@@ -7,25 +7,25 @@ import {
 import { formatDate } from '@/src/utils';
 import Link from 'next/link';
 import { Post } from '@/src/types/types';
+import { memo } from 'react';
 
 interface PostCardProps {
   post: Post;
 }
 
-export function PostCard({ post }: PostCardProps) {
+export const PostCard = memo(function PostCard({ post }: PostCardProps) {
   const authorName = post.author?.name || 'Unknown';
   const commentsCount = post.commentsCount || 0;
   return (
     <Link href={`/post/${post.id}`}>
       <article className="group h-full">
         <article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:border-indigo-200 transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
-          {/* Card Header with Gradient */}
           <header className="bg-gradient-to-r from-indigo-50 to-purple-50 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100">
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200">
               {post.title}
             </h3>
             <aside className="flex justify-between items-center sm:justify-between space-y-2 sm:space-y-0 text-sm">
-              <AvatarGradient authorName={authorName} postId={post.id} />
+              <AvatarGradient authorName={authorName} id={post.id} />
               <time className="text-gray-500 flex items-center ml-5 text-sm">
                 <CalendarIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                 {formatDate(post.createdAt)}
@@ -58,4 +58,4 @@ export function PostCard({ post }: PostCardProps) {
       </article>
     </Link>
   );
-}
+});

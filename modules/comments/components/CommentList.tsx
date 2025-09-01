@@ -9,16 +9,10 @@ interface CommentListProps {
 }
 
 export function CommentList({ postId }: CommentListProps) {
-  const {
-    data: comments,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data: comments, isLoading } = useQuery({
     queryKey: ['comments', postId],
     enabled: !!postId,
     queryFn: () => commentsApi.getComments(postId),
   });
-
-
-  return <CommentListView isLoading={isLoading} comments={comments || []} postId={postId}  />;
+  return <CommentListView isLoading={isLoading} comments={comments || []} />;
 }

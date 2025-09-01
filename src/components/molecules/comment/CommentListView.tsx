@@ -1,21 +1,13 @@
-'use client';
-
-import { formatDate } from '@/src/utils';
 import { Comment } from '@/modules/comments/types';
 import { CommentListSkeleton } from '..';
-import { AvatarGradient } from '../../atoms';
+import { CommentItem } from './CommentItem';
 
 interface CommentListViewProps {
   comments: Comment[];
-  postId: string;
   isLoading?: boolean;
 }
 
-export function CommentListView({
-  comments,
-  postId,
-  isLoading,
-}: CommentListViewProps) {
+export function CommentListView({ comments, isLoading }: CommentListViewProps) {
   if (isLoading) {
     return <CommentListSkeleton />;
   }
@@ -33,23 +25,7 @@ export function CommentListView({
   return (
     <section className="space-y-3 sm:space-y-4">
       {comments.map(comment => {
-        const authorName = comment.user?.name || 'Unknown';
-        return (
-          <article
-            key={comment.id}
-            className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4 slide-in"
-          >
-            <header className="flex items-center mb-2 sm:mb-3">
-              <AvatarGradient postId={postId} authorName={authorName} />
-              <time className="text-gray-500 text-xs sm:text-sm ml-2">
-                {formatDate(comment.createdAt)}
-              </time>
-            </header>
-            <p className="text-gray-700 ml-11 text-sm sm:text-base leading-relaxed">
-              {comment.body}
-            </p>
-          </article>
-        );
+        return <CommentItem key={comment.id} comment={comment} />;
       })}
     </section>
   );

@@ -2,7 +2,7 @@ import { forwardRef, HTMLAttributes } from 'react';
 import { cn } from '../../../utils/cn';
 
 export interface SkeletonButtonProps extends HTMLAttributes<HTMLDivElement> {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'custom';
   variant?: 'default' | 'rounded' | 'square';
   width?: 'auto' | 'full' | 'custom';
   customWidth?: string;
@@ -12,6 +12,7 @@ const sizeClasses = {
   sm: 'h-8 px-3',
   md: 'h-10 px-4',
   lg: 'h-12 px-6',
+  custom: 'h-10 px-4', // Default custom size
 } as const;
 
 const variantClasses = {

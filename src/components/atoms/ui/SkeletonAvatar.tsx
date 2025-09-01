@@ -2,7 +2,7 @@ import { forwardRef, HTMLAttributes } from 'react';
 import { cn } from '../../../utils/cn';
 
 export interface SkeletonAvatarProps extends HTMLAttributes<HTMLDivElement> {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'custom';
   rounded?: 'full' | 'lg' | 'md';
 }
 
@@ -11,6 +11,7 @@ const sizeClasses = {
   md: 'w-10 h-10',
   lg: 'w-12 h-12',
   xl: 'w-16 h-16',
+  custom: 'w-10 h-10', // Default custom size
 } as const;
 
 const roundedClasses = {
