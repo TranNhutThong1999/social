@@ -1,4 +1,4 @@
-import { PostDetails } from '@/modules/posts/components/PostDetails';
+import { PostDetails } from '@/src/components/molecules';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';

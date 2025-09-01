@@ -6,7 +6,7 @@ import {
 } from '@/src/components/icons';
 import { formatDate } from '@/src/utils';
 import Link from 'next/link';
-import { Post } from '../../types/types';
+import { Post } from '@/src/types/types';
 
 interface PostCardProps {
   post: Post;

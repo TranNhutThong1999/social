@@ -1,16 +1,16 @@
 'use client';
 
-import { AuthSkeleton } from '@/src/components/molecules/AuthSkeleton';
+import { AuthSkeleton } from '@/src/components/molecules/auth';
 import { lazy, Suspense } from 'react';
 
 const LoginPageContent = lazy(
-	() => import('../../../modules/auth/components/LoginContent')
+  () => import('../../../modules/auth/components/LoginContent')
 );
 
 export default function LoginPage() {
-	return (
-		<Suspense fallback={<AuthSkeleton type="login" />}>
-			<LoginPageContent />
-		</Suspense>
-	);
+  return (
+    <Suspense fallback={<AuthSkeleton type="login" />}>
+      <LoginPageContent />
+    </Suspense>
+  );
 }

@@ -1,5 +1,5 @@
-import { AvatarGradient } from './AvatarGradient';
 import { formatDate } from '@/src/utils';
+import { AvatarGradient } from '../../atoms';
 
 interface PostHeaderProps {
   postId: string | number;

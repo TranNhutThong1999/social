@@ -1,77 +1,236 @@
-# Social App - Tối ưu hóa cấu trúc
+# Social Media Application
 
-## Cấu trúc dự án đã được tối ưu hóa
+A modern, responsive social media platform built with Next.js, TypeScript, and Tailwind CSS. This application provides a complete social networking experience with user authentication, posts, comments, and real-time interactions.
 
-Dự án này đã được tái cấu trúc để loại bỏ trùng lặp và tạo cấu trúc rõ ràng hơn:
+## 🚀 Features
 
-### 📁 Cấu trúc thư mục
+### Core Functionality
+- **User Authentication**: Secure login/register system with JWT tokens
+- **Posts Management**: Create, read, update, and delete posts
+- **Comments System**: Interactive commenting on posts with real-time updates
+- **User Profiles**: Personalized user experience with avatar support
+- **Responsive Design**: Mobile-first approach with modern UI/UX
+
+### Technical Features
+- **Next.js 14**: App Router with server-side rendering
+- **TypeScript**: Full type safety and better development experience
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
+- **State Management**: Zustand for client-side state management
+- **API Integration**: RESTful API with proper error handling
+- **Component Architecture**: Atomic design pattern for scalable components
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS, PostCSS
+- **State Management**: Zustand
+- **HTTP Client**: Axios
+- **Icons**: Custom SVG icons
+- **Build Tool**: Next.js built-in bundler
+- **Package Manager**: Yarn
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Node.js** (version 18.17 or higher)
+- **Yarn** package manager
+- **Git** for version control
+
+## 🚀 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repository-url>
+   cd social
+   ```
+
+2. **Install dependencies**
+   ```bash
+   yarn install
+   ```
+
+3. **Environment Setup**
+   Create a `.env.local` file in the root directory:
+   ```env
+   # API Configuration
+   NEXT_PUBLIC_API_URL=http://localhost:3000/api
+   
+   # Authentication
+   JWT_SECRET=your-secret-key-here
+   
+   # Database (if applicable)
+   DATABASE_URL=your-database-connection-string
+   ```
+
+4. **Run the development server**
+   ```bash
+   yarn dev
+   ```
+
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🏗️ Project Structure
 
 ```
-modules/
-├── auth/                    # Module xác thực
-│   ├── components/         # Components liên quan đến auth
-│   ├── hooks/             # Custom hooks cho auth
-│   ├── services/          # API services cho auth
-│   └── types.ts           # Type definitions
-├── posts/                  # Module bài viết
-│   ├── components/        # Components liên quan đến posts
-│   ├── hooks/            # Custom hooks cho posts
-│   ├── services/         # API services cho posts
-│   └── types.ts          # Type definitions
-├── comments/               # Module bình luận
-│   ├── components/       # Components liên quan đến comments
-│   ├── hooks/           # Custom hooks cho comments
-│   └── types.ts         # Type definitions
-└── shared/                 # Shared resources
-    ├── components/       # Shared UI components
-    ├── services/        # Shared services
-    ├── hooks/          # Shared hooks
-    ├── utils/          # Utility functions
-    ├── store/          # State management
-    └── providers/      # React providers
+social/
+├── src/
+│   ├── app/                 # Next.js app router pages
+│   ├── components/          # Reusable UI components
+│   │   ├── atoms/          # Basic building blocks
+│   │   ├── molecules/      # Composite components
+│   │   ├── organisms/      # Complex components
+│   │   └── templates/      # Page layouts
+│   ├── modules/            # Feature-based modules
+│   │   ├── auth/           # Authentication module
+│   │   ├── posts/          # Posts module
+│   │   └── comments/       # Comments module
+│   ├── hooks/              # Custom React hooks
+│   ├── stores/             # State management
+│   ├── types/              # TypeScript type definitions
+│   └── utils/              # Utility functions
+├── public/                 # Static assets
+├── styles/                 # Global styles and Tailwind config
+└── package.json            # Dependencies and scripts
 ```
 
-### 🔧 Những thay đổi chính
+## 🎯 Usage Guide
 
-1. **Loại bỏ trùng lặp:**
-   - Xóa thư mục `shared` cũ
-   - Thống nhất services: chỉ giữ lại `postsApi`, `authApi`
-   - Thống nhất components: loại bỏ PostCard, CommentForm trùng lặp
+### Authentication
+1. **Register**: Create a new account with email and password
+2. **Login**: Sign in with your credentials
+3. **Profile**: Manage your user profile and settings
 
-2. **Tối ưu hóa imports:**
-   - Tất cả imports từ `@/shared` → `@/modules/shared`
-   - Components từ modules cụ thể: `@/modules/posts/components/PostCard`
+### Creating Posts
+1. Navigate to the home page
+2. Use the post creation form
+3. Add content, images, and tags
+4. Publish your post
 
-3. **Cấu trúc rõ ràng:**
-   - Mỗi module có trách nhiệm riêng biệt
-   - Shared resources được tập trung trong `modules/shared`
-   - API services được thống nhất và tối ưu
+### Interacting with Content
+- **Like/Unlike**: Click the like button on posts
+- **Comment**: Add comments to posts
+- **Share**: Share posts with other users
+- **Follow**: Follow other users to see their content
 
-### 🚀 Cách sử dụng
+### Navigation
+- **Home**: View all posts from followed users
+- **Profile**: Access your personal profile
+- **Search**: Find users and content
+- **Notifications**: Stay updated with latest activities
 
-```typescript
-// Import components từ modules cụ thể
-import { PostCard } from '@/modules/posts/components/PostCard';
-import { CommentForm } from '@/modules/comments/components/CommentForm';
+## 🧪 Available Scripts
 
-// Import shared components
-import { Header, Button } from '@/modules/shared/components';
+```bash
+# Development
+yarn dev          # Start development server
+yarn build        # Build for production
+yarn start        # Start production server
+yarn lint         # Run ESLint
+yarn type-check   # Run TypeScript compiler check
 
-// Import services
-import { postsApi } from '@/modules/posts/services/posts.api';
-import { authApi } from '@/modules/auth/services/auth.api';
+# Testing (if configured)
+yarn test         # Run tests
+yarn test:watch   # Run tests in watch mode
 ```
 
-### 📋 Lợi ích của cấu trúc mới
+## 🔧 Configuration
 
-1. **Không trùng lặp:** Mỗi component/service chỉ có một phiên bản
-2. **Dễ bảo trì:** Cấu trúc rõ ràng, dễ tìm và sửa
-3. **Scalable:** Dễ dàng thêm modules mới
-4. **Performance:** Giảm bundle size do loại bỏ code trùng lặp
-5. **Consistency:** Thống nhất cách tổ chức và naming
+### Tailwind CSS
+The project uses Tailwind CSS for styling. Configuration can be found in `styles/tailwind.config.ts`.
 
-### 🔄 Migration
+### TypeScript
+TypeScript configuration is in `tsconfig.json` with strict type checking enabled.
 
-Tất cả imports đã được cập nhật tự động. Nếu có lỗi, hãy kiểm tra:
-- Import paths có đúng format mới không
-- Components/services có tồn tại trong đường dẫn mới không
+### Next.js
+Next.js configuration is in `next.config.ts` with optimized settings for production.
+
+## 📱 Responsive Design
+
+The application is built with a mobile-first approach and includes:
+- Responsive navigation menu
+- Adaptive layouts for different screen sizes
+- Touch-friendly interactions
+- Optimized images and assets
+
+## 🔒 Security Features
+
+- JWT-based authentication
+- Protected API routes
+- Input validation and sanitization
+- Secure password handling
+- CORS protection
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Configure environment variables
+3. Deploy automatically on push to main branch
+
+### Other Platforms
+- **Netlify**: Configure build settings for Next.js
+- **AWS**: Use AWS Amplify or custom server setup
+- **Docker**: Build and deploy using containerization
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 Code Style
+
+- Follow TypeScript best practices
+- Use ESLint and Prettier for code formatting
+- Follow the atomic design pattern for components
+- Write meaningful commit messages
+- Include proper error handling
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Port already in use**
+```bash
+# Kill process using port 3000
+npx kill-port 3000
+```
+
+**Build errors**
+```bash
+# Clear Next.js cache
+rm -rf .next
+yarn install
+yarn build
+```
+
+**TypeScript errors**
+```bash
+# Check for type issues
+yarn type-check
+```
+
+## 📚 Additional Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Support
+
+For support and questions:
+- Create an issue in the GitHub repository
+- Contact the development team
+- Check the documentation and troubleshooting guide
+
+---
+
+**Happy coding! 🎉**

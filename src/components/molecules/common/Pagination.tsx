@@ -1,5 +1,5 @@
-import { Button } from '../atoms';
-import { ArrowIcon } from '../icons';
+import { Button } from '../../atoms';
+import { ArrowIcon } from '../../icons';
 
 interface PaginationProps {
   currentPage: number;

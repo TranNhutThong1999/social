@@ -1,8 +1,7 @@
 'use client';
 
-import { PostListSkeleton } from '@/src/components/molecules/PostListSkeleton';
-import { Pagination } from '@/src/components/molecules/Pagination';
-import { PostCard } from '@/src/components/molecules/PostCard';
+import { PostListSkeleton, PostCard } from '@/src/components/molecules/post';
+import { Pagination } from '@/src/components/molecules/common';
 import { Post } from '../../types/types';
 
 interface PostListProps {

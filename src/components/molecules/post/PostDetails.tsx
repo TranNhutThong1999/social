@@ -1,5 +1,5 @@
 import { CommentsSection } from '@/src/components/organisms/CommentsSection';
-import { PostDetailContent } from '@/modules/posts/components/PostDetailContent';
+import { PostDetailContent } from './PostDetailContent';
 import {
   NotFoundMessage,
   MainContainer,
@@ -7,7 +7,7 @@ import {
   SectionContainer,
   ArticleWrapper,
 } from '@/src/components/atoms';
-import { Post } from '../../../src/types/types';
+import { Post } from '@/src/types/types';
 
 interface IProps {
   post?: Post;

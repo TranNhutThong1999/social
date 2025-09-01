@@ -3,12 +3,12 @@
 import { Post } from '@/src/types/types';
 import {
   BackButton,
-  PostHeader,
-  PostContent,
   NavigationContainer,
   ArticleContainer,
 } from '@/src/components/atoms';
 import { useRouter } from 'next/navigation';
+import { PostContent } from './PostContent';
+import { PostHeader } from './PostHeader';
 
 interface PostDetailContentProps {
   post: Post;

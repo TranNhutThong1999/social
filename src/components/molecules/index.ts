@@ -1,5 +1,5 @@
-export { Pagination } from './Pagination';
-export { AuthSkeleton } from './AuthSkeleton';
-export { SearchAndFilter } from './SearchAndFilter';
-export { CommentListSkeleton } from './CommentListSkeleton';
-export { PostCard } from './PostCard';
+// Export components by functional groups
+export * from './post';
+export * from './comment';
+export * from './auth';
+export * from './common';
