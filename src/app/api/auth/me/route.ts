@@ -20,10 +20,22 @@ export async function GET(request: NextRequest) {
     try {
       decoded = jwt.verify(token, JWT_SECRET) as { userId: number; email: string };
     } catch (jwtError) {
-      return NextResponse.json(
+      // Token expired or invalid - clear the cookie
+      const response = NextResponse.json(
         { error: 'Invalid token' },
         { status: 401 }
       );
+      
+      // Clear the expired token cookie
+      response.cookies.set('auth-token', '', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 0,
+        path: '/',
+      });
+      
+      return response;
     }
     
     // Find user by ID

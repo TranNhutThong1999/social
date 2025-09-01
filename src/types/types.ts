@@ -40,11 +40,6 @@ export interface CreatePostData {
   body: string;
 }
 
-export interface UpdatePostData {
-  title?: string;
-  body?: string;
-}
-
 export interface PostsFilter {
   search?: string;
   sortBy?: 'createdAt' | 'comments';
