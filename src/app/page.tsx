@@ -4,8 +4,8 @@ import { PostList } from '@/modules/posts/components/PostList';
 import { usePosts } from '@/modules/posts/hooks/usePosts';
 import { useQueryParams } from '@/src/hooks/useQueryParams';
 import { LoadingSpinner } from '../components/atoms/LoadingSpinner';
-import { Pagination } from '../components/molecules/Pagination';
 import { SearchAndFilter } from '../components/molecules/SearchAndFilter';
+import { Pagination } from '../components/molecules/Pagination';
 
 export default function HomePage() {
 	const { getParams, setParams } = useQueryParams();
@@ -71,28 +71,19 @@ export default function HomePage() {
 				value={{ search, sortBy, sortOrder }}
 			/>
 
-			{isLoading ? (
-				<section className="flex flex-col items-center justify-center py-12 sm:py-20">
-					<LoadingSpinner size="lg" />
-					<p className="text-sm text-gray-500 font-medium mt-4 text-center">
-						Loading amazing content...
-					</p>
-				</section>
-			) : (
-				<>
-					<PostList posts={data?.posts || []} isLoading={isLoading} />
+			<>
+				<PostList posts={data?.posts || []} isLoading={isLoading} />
 
-					{data && data.totalPages > 1 && (
-						<nav className="mt-6 sm:mt-8">
-							<Pagination
-								currentPage={data.page}
-								totalPages={data.totalPages}
-								onPageChange={handlePageChange}
-							/>
-						</nav>
-					)}
-				</>
-			)}
+				{data && data.totalPages > 1 && (
+					<nav className="mt-6 sm:mt-8">
+						<Pagination
+							currentPage={data.page}
+							totalPages={data.totalPages}
+							onPageChange={handlePageChange}
+						/>
+					</nav>
+				)}
+			</>
 		</article>
 	);
 }

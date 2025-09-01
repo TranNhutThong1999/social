@@ -4,6 +4,9 @@ export { postsApi } from './services/posts.api';
 // Export posts hooks
 export { usePosts, usePost, useCreatePost } from './hooks/usePosts';
 
+// Export components
+export { PostList } from './components/PostList';
+export { PostCard } from './components/PostCard';
 // Export types
 export type { 
   Post, 

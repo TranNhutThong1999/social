@@ -1,6 +1,6 @@
 'use client';
 
-import { LoadingSpinner } from '@/src/components/atoms/LoadingSpinner';
+import { PostListSkeleton } from '@/src/components/molecules/PostListSkeleton';
 import { Post } from '../../../src/types/types';
 import { PostCard } from './PostCard';
 
@@ -13,11 +13,7 @@ export function PostList(props: IProps) {
 	const { posts, isLoading } = props;
 
 	if (isLoading && posts.length === 0) {
-		return (
-			<section className="flex justify-center py-8">
-				<LoadingSpinner />
-			</section>
-		);
+		return <PostListSkeleton count={6} />;
 	}
 
 	if (posts.length === 0) {

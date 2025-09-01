@@ -1,38 +1,12 @@
-'use client';
-
-import { LoadingSpinner } from '@/src/components/atoms/LoadingSpinner';
 import { CommentsSection } from '@/modules/comments/components/CommentsSection';
 import { PostDetailContent } from '@/modules/posts/components/PostDetailContent';
 import { Post } from '../../../src/types/types';
 
 interface IProps {
-	post: Post;
-	isLoading?: boolean;
-	error?: boolean;
+	post?: Post;
 }
 
-export function PostDetails(props: IProps) {
-	const { post, isLoading = false, error = false } = props;
-
-	if (isLoading) {
-		return (
-			<section className="flex flex-col justify-center py-8">
-				<LoadingSpinner size="lg" />
-				<p className="text-sm text-gray-500 font-medium mt-4 text-center">
-					Loading amazing content...
-				</p>
-			</section>
-		);
-	}
-
-	if (error) {
-		return (
-			<aside className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-				{error}
-			</aside>
-		);
-	}
-
+export function PostDetails({ post }: IProps) {
 	if (!post) {
 		return (
 			<section className="text-center py-8 text-gray-500">

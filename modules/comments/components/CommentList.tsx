@@ -1,9 +1,8 @@
 'use client';
 
-import { LoadingSpinner } from '@/src/components/atoms/LoadingSpinner';
 import { useQuery } from '@tanstack/react-query';
 import { commentsApi } from '../services/comments.api';
-import { AvatarGradient } from '@/src/components';
+import { AvatarGradient, CommentListSkeleton } from '@/src/components';
 import { formatDate } from '@/src/utils';
 
 interface CommentListProps {
@@ -22,14 +21,7 @@ export function CommentList({ postId }: CommentListProps) {
 	});
 
 	if (isLoading) {
-		return (
-			<section className="flex flex-col justify-center py-6 sm:py-8">
-				<LoadingSpinner />
-				<p className="text-xs sm:text-sm text-gray-500 font-medium mt-3 sm:mt-4 text-center">
-					Loading amazing content...
-				</p>
-			</section>
-		);
+		return <CommentListSkeleton />;
 	}
 
 	if (error) {

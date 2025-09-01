@@ -106,12 +106,10 @@ export function SearchAndFilter({
 }: SearchAndFilterProps) {
 	const [filter, setFilter] = useState<PostsFilter>(value);
 
-	// Sync with external value changes
 	useEffect(() => {
 		setFilter(value);
 	}, [value]);
 
-	// Event handlers
 	const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setFilter((prev) => updateFilter(prev, { search: e.target.value }));
 	};
