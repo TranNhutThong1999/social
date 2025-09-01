@@ -1,4 +1,5 @@
 export { Pagination } from './Pagination';
-import { AuthSkeleton } from './AuthSkeleton';
+export { AuthSkeleton } from './AuthSkeleton';
 export { SearchAndFilter } from './SearchAndFilter';
 export { CommentListSkeleton } from './CommentListSkeleton';
+export { PostCard } from './PostCard';

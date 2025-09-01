@@ -4,7 +4,7 @@ import { AuthSkeleton } from '@/src/components/molecules/AuthSkeleton';
 import { lazy, Suspense } from 'react';
 
 const LoginPageContent = lazy(
-	() => import('../../../modules/auth/components/LoginPageContent')
+	() => import('../../../modules/auth/components/LoginContent')
 );
 
 export default function LoginPage() {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/src/components/atoms/Button';
+import { Button } from '@/src/components/atoms';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,86 +9,85 @@ import { commentsApi } from '../services/comments.api';
 import { CreateCommentData } from '../types';
 
 interface CommentFormProps {
-	postId: string;
+  postId: string;
 }
 
 export function CommentForm({ postId }: CommentFormProps) {
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const queryClient = useQueryClient();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const queryClient = useQueryClient();
 
-	const {
-		register,
-		handleSubmit,
-		reset,
-		formState: { errors },
-	} = useForm<CreateCommentData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreateCommentData>();
 
-	const createCommentMutation = useMutation({
-		mutationFn: (data: CreateCommentData) =>
-			commentsApi.createComment(data),
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['comments', postId] });
-			queryClient.invalidateQueries({ queryKey: ['posts'] });
-			reset({ body: '' });
-			toast.success('Comment added!');
-		},
-		onError: (error: any) => {
-			if (error.message?.includes('Authentication required')) {
-				toast.error('Please login to comment');
-			} else {
-				toast.error(error.message || 'Failed to add comment');
-			}
-		},
-	});
+  const createCommentMutation = useMutation({
+    mutationFn: (data: CreateCommentData) => commentsApi.createComment(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', postId] });
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      reset({ body: '' });
+      toast.success('Comment added!');
+    },
+    onError: (error: any) => {
+      if (error.message?.includes('Authentication required')) {
+        toast.error('Please login to comment');
+      } else {
+        toast.error(error.message || 'Failed to add comment');
+      }
+    },
+  });
 
-	const onSubmit = async (data: CreateCommentData) => {
-		setIsSubmitting(true);
-		try {
-			await createCommentMutation.mutateAsync({
-				postId: Number(postId),
-				body: data.body,
-			});
-		} finally {
-			setIsSubmitting(false);
-		}
-	};
+  const onSubmit = async (data: CreateCommentData) => {
+    setIsSubmitting(true);
+    try {
+      await createCommentMutation.mutateAsync({
+        postId: Number(postId),
+        body: data.body,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-	return (
-		<section className="mb-6 sm:mb-8">
-			<article className="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6">
-				<textarea
-					{...register('body', {
-						required: 'Please enter a comment',
-						minLength: {
-							value: 1,
-							message: 'Comment cannot be empty',
-						},
-						maxLength: {
-							value: 1000,
-							message: 'Comment must not exceed 1000 characters',
-						},
-					})}
-					rows={3}
-					className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
-					placeholder="Write your comment..."
-					disabled={isSubmitting}
-				/>
-				{errors.body && (
-					<p className="text-red-600 text-xs sm:text-sm mt-1">
-						{errors.body.message}
-					</p>
-				)}
-				<footer className="flex justify-end mt-3">
-					<Button
-						type="button"
-						onClick={handleSubmit(onSubmit)}
-						disabled={isSubmitting}
-						className="cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium text-xs sm:text-sm"
-					>
-						{isSubmitting ? 'Submitting...' : 'Submit'}
-					</Button>
-				</footer>
-			</article>
-		</section>
-	);
+  return (
+    <section className="mb-6 sm:mb-8">
+      <article className="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6">
+        <textarea
+          {...register('body', {
+            required: 'Please enter a comment',
+            minLength: {
+              value: 1,
+              message: 'Comment cannot be empty',
+            },
+            maxLength: {
+              value: 1000,
+              message: 'Comment must not exceed 1000 characters',
+            },
+          })}
+          rows={3}
+          className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
+          placeholder="Write your comment..."
+          disabled={isSubmitting}
+        />
+        {errors.body && (
+          <p className="text-red-600 text-xs sm:text-sm mt-1">
+            {errors.body.message}
+          </p>
+        )}
+        <footer className="flex justify-end mt-3">
+          <Button
+            type="button"
+            onClick={handleSubmit(onSubmit)}
+            disabled={isSubmitting}
+            className="cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium text-xs sm:text-sm"
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </Button>
+        </footer>
+      </article>
+    </section>
+  );
 }

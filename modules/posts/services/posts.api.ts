@@ -1,9 +1,9 @@
 import { apiClient } from '@/modules/api/axios';
 import { CreatePostData, Post, PostsFilter, PostsResponse } from '@/src/types/types';
+import { API_ENDPOINTS } from '@/src/constants/api';
 import axios from 'axios';
 
 export const postsApi = {
-  // Get posts with filters
   async getPosts(filters: PostsFilter = {}): Promise<PostsResponse> {
     try {
       const params = new URLSearchParams();
@@ -14,7 +14,7 @@ export const postsApi = {
       if (filters.page) params.append('page', filters.page.toString());
       if (filters.limit) params.append('limit', filters.limit.toString());
 
-      const response = await apiClient.get(`/post?${params.toString()}`);
+      const response = await apiClient.get(`${API_ENDPOINTS.POSTS.LIST}?${params.toString()}`);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -27,7 +27,7 @@ export const postsApi = {
   // Get single post
   async getPost(id: string): Promise<Post> {
     try {
-      const response = await apiClient.get(`/post/${id}`);
+      const response = await apiClient.get(API_ENDPOINTS.POSTS.DETAIL(id));
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -37,10 +37,9 @@ export const postsApi = {
     }
   },
 
-  // Create post
   async createPost(data: CreatePostData): Promise<Post> {
     try {
-      const response = await apiClient.post('/post', data);
+      const response = await apiClient.post(API_ENDPOINTS.POSTS.LIST, data);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {

@@ -1,17 +1,14 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
-// const PROTECTED_ROUTES = ['/post'];
-const AUTH_ROUTES = ['/login', '/register'];
-const AUTH_TOKEN_COOKIE = 'auth-token';
+import { AUTH_ROUTES, COOKIE_NAMES } from './constants/routes';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   
-  const authToken = request.cookies.get(AUTH_TOKEN_COOKIE)?.value;
+  const authToken = request.cookies.get(COOKIE_NAMES.AUTH_TOKEN)?.value;
 
-  const isAuthRoute = AUTH_ROUTES.includes(pathname);
+  const isAuthRoute = AUTH_ROUTES.includes(pathname as typeof AUTH_ROUTES[number]);
   
   // if (isProtectedRoute && !authToken) {
   //   const loginUrl = new URL('/login', request.url);
