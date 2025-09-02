@@ -5,7 +5,6 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 const NEXT_PUBLIC_APP_URL =
   process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
@@ -16,7 +15,7 @@ interface PageProps {
 const getPost = async (id: string) => {
   try {
     const response = await fetchWithAuth(
-      `${NEXT_PUBLIC_API_URL}${API_ENDPOINTS.POSTS.DETAIL(id)}`,
+      `${API_ENDPOINTS.POSTS.DETAIL(id)}`,
       {
         cache: 'no-store',
       }

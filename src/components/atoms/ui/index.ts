@@ -11,3 +11,4 @@ export { SkeletonButton } from './SkeletonButton';
 export { SkeletonIcon } from './SkeletonIcon';
 export { SkeletonImage } from './SkeletonImage';
 export { SkeletonCard } from './SkeletonCard';
+export { HomePageSkeleton } from './HomePageSkeleton';

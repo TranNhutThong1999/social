@@ -75,6 +75,7 @@ export const useAuth = () => {
 
   const logout = useCallback(async () => {
     try {
+      router.push(ROUTES.HOME);
       await logoutMutation.mutateAsync();
     } catch (error) {
       console.error('Logout error:', error);

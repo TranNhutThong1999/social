@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { API_ENDPOINTS } from "../constants/api";
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -6,8 +6,12 @@ const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function fetchWithAuth(input: RequestInfo | URL, init?: RequestInit) {
   const cookieStore = await cookies();
   const cookieHeader = cookieStore.toString();
-
-  let res = await fetch(input, {
+  const headersList = await headers();
+  const host = headersList.get("host"); 
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  const url = `${protocol}://${host}${input}`
+  const refreshUrl = `${protocol}://${host}${API_ENDPOINTS.AUTH.REFRESH_TOKEN}`
+  let res = await fetch(url, {
     ...init,
     headers: {
       ...init?.headers,
@@ -17,7 +21,7 @@ export async function fetchWithAuth(input: RequestInfo | URL, init?: RequestInit
   });
 
   if (res.status === 401) {
-    const refreshRes = await fetch(`${NEXT_PUBLIC_API_URL}${API_ENDPOINTS.AUTH.REFRESH_TOKEN}`, {
+    const refreshRes = await fetch(refreshUrl, {
       method: "POST",
       headers: {
         Cookie: cookieHeader,
@@ -32,7 +36,7 @@ export async function fetchWithAuth(input: RequestInfo | URL, init?: RequestInit
     const setCookieHeaders = refreshRes.headers.getSetCookie();
     const newCookieHeader = setCookieHeaders.join("; ");
 
-    res = await fetch(input, {
+    res = await fetch(url, {
       ...init,
       headers: {
         ...init?.headers,
