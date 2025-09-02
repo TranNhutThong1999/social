@@ -1,7 +1,7 @@
 import { useAuth } from '@/src/modules/auth/hooks/useAuth';
 
 export function UserProfile() {
-  const { user, logout } = useAuth();
+  const { user, logout, isLogoutLoading } = useAuth();
 
   return (
     <>
@@ -15,9 +15,10 @@ export function UserProfile() {
       </aside>
       <button
         onClick={logout}
-        className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-2.5 rounded-full hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium"
+        disabled={isLogoutLoading}
+        className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-2.5 rounded-full hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
       >
-        Sign Out
+        {isLogoutLoading ? 'Signing Out...' : 'Sign Out'}
       </button>
     </>
   );

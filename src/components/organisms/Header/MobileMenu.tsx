@@ -6,7 +6,7 @@ import { MenuIcon } from '../../icons';
 
 export function MobileMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout, isLogoutLoading } = useAuth();
   const pathname = usePathname();
 
   return (
@@ -38,9 +38,10 @@ export function MobileMenu() {
               </aside>
               <button
                 onClick={logout}
-                className="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:from-red-600 hover:to-pink-600 transition-all duration-300 font-medium"
+                disabled={isLogoutLoading}
+                className="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:from-red-600 hover:to-pink-600 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Sign Out
+                {isLogoutLoading ? 'Signing Out...' : 'Sign Out'}
               </button>
             </div>
           ) : (

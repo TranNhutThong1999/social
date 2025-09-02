@@ -27,30 +27,29 @@ A modern social media blog application built with Next.js, React, and TypeScript
 ### Backend API
 - **Next.js API Routes** - Server-side API endpoints (Full-stack within Next.js)
 - **JWT** - Authentication
-- **bcryptjs** - Password hashing
 
 ## 📁 Project Structure
 
 ```
 src/
 ├── app/                    # Next.js App Router
-│   ├── api/               # API routes
-│   ├── login/             # Login page
-│   ├── register/          # Registration page
-│   └── post/[id]/         # Post detail page
+│   ├── (private)/         # Protected routes
+│   ├── (public)/          # Public routes (login, register)
+│   └── api/               # API endpoints
 ├── components/             # React components
-│   ├── atoms/             # Basic components (Button, Input, etc.)
-│   ├── molecules/         # More complex components
-│   ├── organisms/         # Large components (Header, PostList, etc.)
+│   ├── atoms/             # Basic UI components
+│   ├── molecules/         # Composite components
+│   ├── organisms/         # Complex components
 │   └── templates/         # Layout templates
 ├── modules/                # Feature modules
-│   ├── auth/              # Authentication module
-│   ├── posts/             # Posts module
-│   └── comments/          # Comments module
-├── stores/                 # Zustand stores
+│   ├── auth/              # Authentication
+│   ├── posts/             # Posts management
+│   └── comments/          # Comments system
 ├── hooks/                  # Custom React hooks
-├── types/                  # TypeScript type definitions
-└── utils/                  # Utility functions
+├── stores/                 # State management
+├── types/                  # TypeScript types
+├── utils/                  # Utility functions
+└── mocks/                  # Mock data
 ```
 
 ## 🚀 Installation and Running the Project
