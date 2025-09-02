@@ -8,9 +8,9 @@ export function Logo() {
         <EditIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
       </figure>
       <figcaption>
-        <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+        <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
           StoryHub
-        </h1>
+        </h2>
         <p className="text-xs text-gray-500 -mt-1 hidden sm:block">
           Share Your Stories
         </p>

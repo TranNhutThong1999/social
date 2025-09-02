@@ -127,7 +127,11 @@ export function SearchAndFilter({
         <aside className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
           <aside className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
             <fieldset className="relative group">
+              <label htmlFor="sort-by-select" className="sr-only">
+                Sort by
+              </label>
               <select
+                id="sort-by-select"
                 value={filter.sortBy}
                 onChange={handleSortByChange}
                 disabled={disabled}
@@ -146,7 +150,11 @@ export function SearchAndFilter({
 
             {/* Sort Order */}
             <fieldset className="relative group">
+              <label htmlFor="sort-order-select" className="sr-only">
+                Sort order
+              </label>
               <select
+                id="sort-order-select"
                 value={filter.sortOrder}
                 onChange={handleSortOrderChange}
                 disabled={disabled}
