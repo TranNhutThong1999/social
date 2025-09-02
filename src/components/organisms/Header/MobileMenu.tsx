@@ -22,7 +22,7 @@ export function MobileMenu() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <nav className="md:hidden py-4 border-t border-gray-100">
+        <nav className="absolute top-full  right-0 w-full bg-white rounded-xl shadow-lg border border-gray-200 py-4 px-4 z-50">
           {isAuthenticated ? (
             <div className="flex flex-col space-y-4">
               <aside className="flex items-center space-x-3 bg-gray-50 px-4 py-3 rounded-xl">
@@ -44,7 +44,7 @@ export function MobileMenu() {
               </button>
             </div>
           ) : (
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col items-center space-y-3">
               <Link
                 href={`/login?redirect=${encodeURIComponent(pathname)}`}
                 className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors duration-200"
@@ -54,7 +54,7 @@ export function MobileMenu() {
               </Link>
               <Link
                 href={`/register?redirect=${encodeURIComponent(pathname)}`}
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 font-medium text-center"
+                className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2.5 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Get Started

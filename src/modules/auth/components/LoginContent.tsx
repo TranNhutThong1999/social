@@ -51,7 +51,7 @@ export default function LoginPageContent() {
   };
 
   return (
-    <main>
+    <main className="flex items-center">
       <article className="max-w-md mx-auto">
         <section className="bg-white rounded-xl shadow-lg p-6 sm:p-8 fade-in">
           <h1 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800">
