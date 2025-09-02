@@ -40,13 +40,13 @@ export async function GET(request: NextRequest) {
         path: '/',
       });
       
-        response.cookies.set('refresh-token', '', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 0, 
-    path: '/',
-  });
+      response.cookies.set('refresh-token', '', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 0, 
+        path: '/',
+      });
       return response;
     }
     

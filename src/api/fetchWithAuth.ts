@@ -13,14 +13,12 @@ export async function fetchWithAuth(input: RequestInfo | URL, init?: RequestInit
       ...init?.headers,
       Cookie: cookieHeader,
     },
-    credentials: "include",
     cache: "no-store",
   });
 
   if (res.status === 401) {
     const refreshRes = await fetch(`${NEXT_PUBLIC_API_URL}${API_ENDPOINTS.AUTH.REFRESH_TOKEN}`, {
       method: "POST",
-      credentials: "include",
       headers: {
         Cookie: cookieHeader,
       },
@@ -40,7 +38,6 @@ export async function fetchWithAuth(input: RequestInfo | URL, init?: RequestInit
         ...init?.headers,
         Cookie: newCookieHeader,
       },
-      credentials: "include",
       cache: "no-store",
     });
   }

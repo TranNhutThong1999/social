@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     const accessToken = jwt.sign(
       { userId: user.id, email: user.email },
       JWT_SECRET,
-      { expiresIn: '10Minutes' }
+      { expiresIn: '10m' }
     );
 
     // Tạo refresh token (thời hạn dài)
