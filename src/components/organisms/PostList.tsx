@@ -2,7 +2,7 @@
 
 import { PostListSkeleton, PostCard } from '@/src/components/molecules/post';
 import { Pagination } from '@/src/components/molecules/common';
-import { Post } from '../../types/types';
+import { Post } from '@/src/types/types';
 
 interface PostListProps {
   posts: Post[];

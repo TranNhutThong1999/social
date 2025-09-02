@@ -5,7 +5,9 @@ export const ROUTES = {
   POST: '/post',
 } as const;
 
-export const AUTH_ROUTES = [ROUTES.LOGIN, ROUTES.REGISTER] as const;
+ export const  AUTH_ROUTES = [ROUTES.LOGIN, ROUTES.REGISTER] as const;
+
+export const PROTECTED_ROUTES = [ROUTES.POST] as const;
 
 export const COOKIE_NAMES = {
   AUTH_TOKEN: 'auth-token',

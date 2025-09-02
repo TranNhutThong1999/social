@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { apiClient } from '../../api/axios';
-import { Comment, CreateCommentData } from '../types';
+import { apiClient } from './axios';
+import { Comment, CreateCommentData } from '@/src/types/types';
 import { API_ENDPOINTS } from '@/src/constants/api';
 
 export const commentsApi = {
-  // Get comments for a post
   async getComments(postId: string): Promise<Comment[]> {
     try {
       const response = await apiClient.get(API_ENDPOINTS.POSTS.COMMENTS(postId));

@@ -15,39 +15,24 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '6');
 
 
-    // const commentsCount: Record<number, any[]> = comments.reduce((acc, comment) => {
-    //   const postId = comment.postId;
-      
-    //   if (!acc[postId]) {
-    //     acc[postId] = [];
-    //   }
-    //   acc[postId].push(comment);
-      
-    //   return acc;
-    // }, {} as Record<number, any[]>);
+
     let filteredPosts = [...posts]
     
-    // Apply search filter
     if (search) {
       const searchLower = search.toLowerCase();
       filteredPosts = filteredPosts.filter(
         post =>
           post.title.toLowerCase().includes(searchLower) ||
-          post.body.toLowerCase().includes(searchLower) ||
-          post.author?.name.toLowerCase().includes(searchLower)
+          post.body.toLowerCase().includes(searchLower)
       );
     }
 
-    // Apply sorting
     filteredPosts.sort((a, b) => {
       let aValue: any;
       let bValue: any;
 
       switch (sortBy) {
-        case 'title':
-          aValue = a.title.toLowerCase();
-          bValue = b.title.toLowerCase();
-          break;
+       
         case 'comments':
           aValue = a.commentsCount || 0;
           bValue = b.commentsCount || 0;
@@ -66,7 +51,6 @@ export async function GET(request: NextRequest) {
       }
     });
 
-    // Apply pagination
     const total = filteredPosts.length;
     const totalPages = Math.ceil(total / limit);
     const startIndex = (page - 1) * limit;
@@ -82,12 +66,6 @@ export async function GET(request: NextRequest) {
       totalPages,
     });
 
-    // Add CORS headers to response
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
-    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
-    response.headers.set('Access-Control-Allow-Credentials', 'true');
-
     return response;
   } catch (error) {
     console.error('Get posts error:', error);
@@ -96,12 +74,7 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
     
-    // Add CORS headers to error response
-    errorResponse.headers.set('Access-Control-Allow-Origin', '*');
-    errorResponse.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
-    errorResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
-    errorResponse.headers.set('Access-Control-Allow-Credentials', 'true');
-    
+
     return errorResponse;
   }
 }

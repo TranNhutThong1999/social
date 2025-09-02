@@ -1,4 +1,4 @@
-import { Comment } from '@/src/modules/comments/types';
+import { Comment } from '@/src/types/types';
 import { CommentListSkeleton } from '..';
 import { CommentItem } from './CommentItem';
 

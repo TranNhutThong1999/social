@@ -1,4 +1,13 @@
 
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  username: string;
+  avatar?: string;
+  createdAt: string;
+}
+
 export interface Post {
   id: number;
   title: string;
@@ -23,6 +32,11 @@ export interface Comment {
   body: string;
   createdAt: string;
   updatedAt: string;
+   user?: {
+    id: number;
+    name: string;
+    avatar?: string;
+  };
   author?: {
     id: number;
     name: string;
@@ -54,4 +68,22 @@ export interface PostsResponse {
   total: number;
   page: number;
   totalPages: number;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterCredentials {
+  name: string;
+  email: string;
+  username: string;
+  password: string;
+  confirmPassword?: string;
+}
+
+export interface AuthResponse {
+  user: User;
+  success: boolean;
 }

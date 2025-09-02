@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { apiClient } from '../../api/axios';
-import { LoginCredentials, RegisterCredentials, User, AuthResponse } from '../types';
+import { apiClient } from './axios';
+import { LoginCredentials, RegisterCredentials, User, AuthResponse } from '@/src/types/types';
 import { API_ENDPOINTS } from '@/src/constants/api';
 
 export const authApi = {

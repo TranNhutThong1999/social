@@ -1,7 +1,7 @@
 'use client';
 
-import { authApi } from '@/src/modules/auth/services/auth.api';
-import { AuthResponse, LoginCredentials } from '@/src/modules/auth/types';
+import { authApi } from '@/src/api';
+import { AuthResponse, LoginCredentials } from '@/src/types/types';
 import { Button, Input, InputPassword } from '@/src/components/atoms';
 import { useAuthStore } from '@/src/stores/auth';
 import { validateEmail } from '@/src/utils/validation';

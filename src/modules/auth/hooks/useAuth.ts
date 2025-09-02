@@ -3,8 +3,8 @@
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/src/stores/auth';
-import { authApi } from '../services/auth.api';
-import { LoginCredentials, RegisterCredentials } from '../types';
+import { authApi } from '@/src/api';
+import { LoginCredentials, RegisterCredentials } from '@/src/types/types';
 
 export const useAuth = () => {
   const { user, isAuthenticated, login: loginStore, logout: logoutStore } = useAuthStore();

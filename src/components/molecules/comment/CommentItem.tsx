@@ -1,5 +1,5 @@
 import React from 'react';
-import { Comment } from '@/src/modules/comments/types';
+import { Comment } from '@/src/types/types';
 import { AvatarGradient } from '../../atoms';
 import { formatDate } from '@/src/utils';
 

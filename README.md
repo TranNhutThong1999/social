@@ -1,20 +1,20 @@
 # Social Media Blog Application
 
-Ứng dụng blog mạng xã hội hiện đại được xây dựng với Next.js, React và TypeScript.
+A modern social media blog application built with Next.js, React, and TypeScript.
 
-## 🚀 Tính năng chính
+## 🚀 Main Features
 
-- **Xác thực người dùng**: Đăng ký, đăng nhập, đăng xuất
-- **Quản lý bài viết**: Xem bài viết
-- **Hệ thống bình luận**: Thêm và xem bình luận cho bài viết
-- **Giao diện responsive**: Tương thích với mọi thiết bị
-- **Quản lý state**: Sử dụng Zustand và React Query
-- **UI Components**: Hệ thống component được thiết kế theo nguyên tắc Atomic Design
+- **User Authentication**: Registration, login, logout
+- **Post Management**: View posts
+- **Comment System**: Add and view comments for posts
+- **Responsive Interface**: Compatible with all devices
+- **State Management**: Using Zustand and React Query
+- **UI Components**: Component system designed following Atomic Design principles
 
-## 🛠️ Công nghệ sử dụng
+## 🛠️ Technologies Used
 
 ### Frontend
-- **Next.js 15.5.2** - React framework với App Router
+- **Next.js 15.5.2** - React framework with App Router
 - **React 19.1.0** - UI library
 - **TypeScript 5** - Type safety
 - **Tailwind CSS 4** - Styling framework
@@ -25,102 +25,102 @@
 
 
 ### Backend API
-- **Next.js API Routes** - Server-side API endpoints (Full-stack trong Next.js)
+- **Next.js API Routes** - Server-side API endpoints (Full-stack within Next.js)
 - **JWT** - Authentication
 - **bcryptjs** - Password hashing
 
-## 📁 Cấu trúc dự án
+## 📁 Project Structure
 
 ```
 src/
 ├── app/                    # Next.js App Router
 │   ├── api/               # API routes
-│   ├── login/             # Trang đăng nhập
-│   ├── register/          # Trang đăng ký
-│   └── post/[id]/         # Trang chi tiết bài viết
+│   ├── login/             # Login page
+│   ├── register/          # Registration page
+│   └── post/[id]/         # Post detail page
 ├── components/             # React components
-│   ├── atoms/             # Components cơ bản (Button, Input, etc.)
-│   ├── molecules/         # Components phức tạp hơn
-│   ├── organisms/         # Components lớn (Header, PostList, etc.)
+│   ├── atoms/             # Basic components (Button, Input, etc.)
+│   ├── molecules/         # More complex components
+│   ├── organisms/         # Large components (Header, PostList, etc.)
 │   └── templates/         # Layout templates
 ├── modules/                # Feature modules
-│   ├── auth/              # Module xác thực
-│   ├── posts/             # Module bài viết
-│   └── comments/          # Module bình luận
+│   ├── auth/              # Authentication module
+│   ├── posts/             # Posts module
+│   └── comments/          # Comments module
 ├── stores/                 # Zustand stores
 ├── hooks/                  # Custom React hooks
 ├── types/                  # TypeScript type definitions
 └── utils/                  # Utility functions
 ```
 
-## 🚀 Cài đặt và chạy dự án
+## 🚀 Installation and Running the Project
 
-### Yêu cầu hệ thống
+### System Requirements
 - Node.js 18+ 
-- Yarn hoặc npm
+- Yarn or npm
 
-### Bước 1: Clone dự án
+### Step 1: Clone the project
 ```bash
 git clone <repository-url>
 cd social
 ```
 
-### Bước 2: Cài đặt dependencies
+### Step 2: Install dependencies
 ```bash
 yarn install
-# hoặc
+# or
 npm install
 ```
 
-### Bước 3: Chạy dự án ở môi trường development
+### Step 3: Run the project in development environment
 ```bash
 yarn dev
-# hoặc
+# or
 npm run dev
 ```
 
-Dự án sẽ chạy tại: `http://localhost:3000`
+The project will run at: `http://localhost:3000`
 
-### Bước 4: Build và chạy production
+### Step 4: Build and run production
 ```bash
 yarn build
 yarn start
-# hoặc
+# or
 npm run build
 npm start
 ```
 
-## �� Hướng dẫn sử dụng
+## 📖 Usage Guide
 
-### 1. Đăng ký tài khoản
-- Truy cập `/register`
-- Điền thông tin: email, mật khẩu, xác nhận mật khẩu
-- Nhấn "Đăng ký" để tạo tài khoản mới
+### 1. Account Registration
+- Visit `/register`
+- Fill in information: email, password, confirm password
+- Click "Register" to create a new account
 
-### 2. Đăng nhập
-- Truy cập `/login`
-- Nhập email và mật khẩu
-- Nhấn "Đăng nhập" để vào hệ thống
+### 2. Login
+- Visit `/login`
+- Enter email and password
+- Click "Login" to access the system
 
-### 3. Xem bài viết
-- Trang chủ hiển thị danh sách tất cả bài viết
-- Nhấn vào bài viết để xem chi tiết
-- Sử dụng thanh tìm kiếm để tìm bài viết cụ thể
+### 3. View Posts
+- Homepage displays a list of all posts
+- Click on a post to view details
+- Use the search bar to find specific posts
 
-### 4. Bình luận
-- Xem bài viết chi tiết
-- Cuộn xuống phần bình luận
-- Nhập nội dung bình luận
-- Nhấn "Gửi bình luận"
+### 4. Comments
+- View post details
+- Scroll down to the comments section
+- Enter comment content
+- Click "Send Comment"
 
-## 🎨 Hệ thống Component
+## 🎨 Component System
 
 ### Atomic Design Pattern
-Dự án sử dụng nguyên tắc Atomic Design để tổ chức components:
+The project uses Atomic Design principles to organize components:
 
-- **Atoms**: Components cơ bản (Button, Input, LoadingSpinner)
-- **Molecules**: Components phức tạp hơn (CommentForm, PostCard)
-- **Organisms**: Components lớn (Header, PostList, CommentsSection)
+- **Atoms**: Basic components (Button, Input, LoadingSpinner)
+- **Molecules**: More complex components (CommentForm, PostCard)
+- **Organisms**: Large components (Header, PostList, CommentsSection)
 - **Templates**: Layout templates (RootLayoutTemplate)
 
 ### Styling
@@ -129,18 +129,18 @@ Dự án sử dụng nguyên tắc Atomic Design để tổ chức components:
 
 
 ### API Configuration
-Dự án sử dụng Next.js API Routes làm backend. Các endpoint API được định nghĩa trong `src/constants/api.ts`:
+The project uses Next.js API Routes as the backend. API endpoints are defined in `src/constants/api.ts`:
 
 - **Authentication**: `/api/auth/login`, `/api/auth/register`, `/api/auth/logout`, `/api/auth/me`
 - **Posts**: `/api/post`, `/api/post/[id]`, `/api/post/[id]/comments`
 
-Các API routes được implement trong thư mục `src/app/api/`:
-- `src/app/api/auth/` - Xử lý xác thực người dùng
-- `src/app/api/post/` - Quản lý bài viết và bình luận
+API routes are implemented in the `src/app/api/` directory:
+- `src/app/api/auth/` - Handle user authentication
+- `src/app/api/post/` - Manage posts and comments
 
 ## 📱 Responsive Design
 
-Dự án được thiết kế responsive với các breakpoint:
+The project is designed to be responsive with the following breakpoints:
 - **Mobile**: < 768px
 - **Tablet**: 768px - 1024px  
 - **Desktop**: > 1024px
@@ -148,50 +148,50 @@ Dự án được thiết kế responsive với các breakpoint:
 ## 🧪 Testing
 
 ```bash
-# Chạy tests
+# Run tests
 yarn test
 
-# Chạy tests với coverage
+# Run tests with coverage
 yarn test:coverage
 
-# Chạy tests trong watch mode
+# Run tests in watch mode
 yarn test:watch
 ```
 
-## 📦 Build và Deploy
+## 📦 Build and Deploy
 
-### Build Production
+### Production Build
 ```bash
 yarn build
 ```
 
-### Deploy lên Vercel
-1. Kết nối repository với Vercel
-2. Cấu hình environment variables
-3. Deploy tự động khi push code
+### Deploy to Vercel
+1. Connect repository to Vercel
+2. Configure environment variables
+3. Automatic deployment when pushing code
 
-### Deploy lên server khác
+### Deploy to other servers
 ```bash
 yarn build
 yarn start
 ```
 
-## 📝 Scripts có sẵn
+## 📝 Available Scripts
 
-- `yarn dev` - Chạy development server với Turbopack
-- `yarn build` - Build dự án cho production
-- `yarn start` - Chạy production server
-- `yarn lint` - Kiểm tra code style
-- `yarn type-check` - Kiểm tra TypeScript types
+- `yarn dev` - Run development server with Turbopack
+- `yarn build` - Build project for production
+- `yarn start` - Run production server
+- `yarn lint` - Check code style
+- `yarn type-check` - Check TypeScript types
 
-### Lỗi build
+### Build Errors
 ```bash
-# Xóa cache Next.js
+# Clear Next.js cache
 rm -rf .next
 yarn build
 ```
 
-## 📚 Tài liệu tham khảo
+## 📚 References
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev/)
@@ -201,4 +201,4 @@ yarn build
 
 ## 📄 License
 
-Dự án này được phát hành dưới MIT License.
+This project is released under the MIT License.

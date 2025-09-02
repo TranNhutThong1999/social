@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { commentsApi } from '../services/comments.api';
-import { CreateCommentData } from '../types';
+import { commentsApi } from '@/src/api';
+import { CreateCommentData } from '@/src/types/types';
 import { CommentFormView } from '@/src/components/molecules/comment/CommentFormView';
 
 interface CommentFormProps {

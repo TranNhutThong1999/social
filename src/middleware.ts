@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { AUTH_ROUTES, COOKIE_NAMES } from './constants/routes';
+import { AUTH_ROUTES, COOKIE_NAMES, PROTECTED_ROUTES, ROUTES } from './constants/routes';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -10,11 +10,15 @@ export function middleware(request: NextRequest) {
 
   const isAuthRoute = AUTH_ROUTES.includes(pathname as typeof AUTH_ROUTES[number]);
   
-  // if (isProtectedRoute && !authToken) {
-  //   const loginUrl = new URL('/login', request.url);
-  //   loginUrl.searchParams.set('redirect', pathname);
-  //   return NextResponse.redirect(loginUrl);
-  // }
+    const isProtectedRoute = PROTECTED_ROUTES.some(route => 
+    pathname.startsWith(route)
+  );
+
+  if (isProtectedRoute && !authToken) {
+    const loginUrl = new URL(ROUTES.LOGIN, request.url);
+    loginUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
   
   if (authToken && isAuthRoute) {
     return NextResponse.redirect(new URL('/', request.url));

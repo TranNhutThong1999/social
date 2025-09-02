@@ -18,8 +18,8 @@ import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { AuthResponse, RegisterCredentials } from '../types';
-import { authApi } from '../services/auth.api';
+import { AuthResponse, RegisterCredentials } from '@/src/types/types';
+import { authApi } from '@/src/api';
 
 type OnSubmitHandler = (data: RegisterCredentials) => Promise<void>;
 

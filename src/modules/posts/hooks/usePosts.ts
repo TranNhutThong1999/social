@@ -2,7 +2,7 @@
 
 import { CreatePostData, PostsFilter, Post } from '@/src/types/types';
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query';
-import { postsApi } from '../services/posts.api';
+import { postsApi } from '@/src/api';
 
 export const usePosts = (params: PostsFilter) => {
   

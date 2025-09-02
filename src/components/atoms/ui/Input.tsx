@@ -45,7 +45,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ? 'pl-3 sm:pl-4 pr-10 sm:pr-12'
         : 'px-3 sm:px-4';
 
-    console.log(rightIcon);
     return (
       <fieldset className={widthClass}>
         {label && (

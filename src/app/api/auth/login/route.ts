@@ -2,7 +2,7 @@ import { userCredentials, users } from '@/src/mocks/users';
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || 'your-secret-key';
 
 export async function POST(request: NextRequest) {
   try {

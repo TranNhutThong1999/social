@@ -2,7 +2,7 @@
 
 import { CommentListView } from '@/src/components';
 import { useQuery } from '@tanstack/react-query';
-import { commentsApi } from '../services/comments.api';
+import { commentsApi } from '@/src/api';
 
 interface CommentListProps {
   postId: string;

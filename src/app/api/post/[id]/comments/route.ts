@@ -34,7 +34,6 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // Verify authentication using cookie
     const authResult = requireAuth(request);
     if (authResult.response) {
       return authResult.response;

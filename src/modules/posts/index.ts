@@ -1,5 +1,5 @@
 // Export posts API service
-export { postsApi } from './services/posts.api';
+export { postsApi } from '@/src/api';
 
 // Export posts hooks
 export { usePosts, usePost, useCreatePost } from './hooks/usePosts';
