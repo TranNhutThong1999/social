@@ -1,7 +1,7 @@
 'use client';
 
 import { PostList } from '@/src/components/organisms/PostList';
-import { usePosts } from '@/modules/posts/hooks/usePosts';
+import { usePosts } from '@/src/modules/posts/hooks/usePosts';
 import { useQueryParams } from '@/src/hooks/useQueryParams';
 import { SearchAndFilter } from '@/src/components/molecules/common';
 import { ExclamationIcon } from '../components/icons';

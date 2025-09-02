@@ -15,6 +15,7 @@ export interface Post {
   commentsCount?:number
 }
 
+
 export interface Comment {
   id: number;
   postId: number;

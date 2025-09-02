@@ -4,7 +4,7 @@ import { AuthSkeleton } from '@/src/components/molecules/auth';
 import { lazy, Suspense } from 'react';
 
 const RegisterPageContent = lazy(
-  () => import('../../../modules/auth/components/RegisterContent')
+  () => import('@/src/modules/auth/components/RegisterContent')
 );
 
 export default function RegisterPage() {

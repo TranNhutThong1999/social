@@ -1,4 +1,4 @@
-import { useAuth } from '@/modules/auth/hooks/useAuth';
+import { useAuth } from '@/src/modules/auth/hooks/useAuth';
 
 export function UserProfile() {
   const { user, logout } = useAuth();

@@ -1,7 +1,5 @@
 'use client';
 
-import { authApi } from '@/modules/auth/services/auth.api';
-import { AuthResponse, RegisterCredentials } from '@/modules/auth/types';
 import {
   Button,
   Input,
@@ -20,6 +18,8 @@ import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { AuthResponse, RegisterCredentials } from '../types';
+import { authApi } from '../services/auth.api';
 
 type OnSubmitHandler = (data: RegisterCredentials) => Promise<void>;
 

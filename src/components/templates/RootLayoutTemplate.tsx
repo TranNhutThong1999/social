@@ -1,4 +1,4 @@
-import { Providers } from '@/modules/auth/providers/Providers';
+import { Providers } from '@/src/modules/auth/providers/Providers';
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { Toaster } from 'react-hot-toast';

@@ -1,7 +1,7 @@
-import { apiClient } from '@/modules/api/axios';
 import { CreatePostData, Post, PostsFilter, PostsResponse } from '@/src/types/types';
 import { API_ENDPOINTS } from '@/src/constants/api';
 import axios from 'axios';
+import apiClient from '../../api/axios';
 
 export const postsApi = {
   async getPosts(filters: PostsFilter = {}): Promise<PostsResponse> {

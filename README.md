@@ -1,236 +1,204 @@
-# Social Media Application
+# Social Media Blog Application
 
-A modern, responsive social media platform built with Next.js, TypeScript, and Tailwind CSS. This application provides a complete social networking experience with user authentication, posts, comments, and real-time interactions.
+Ứng dụng blog mạng xã hội hiện đại được xây dựng với Next.js, React và TypeScript.
 
-## 🚀 Features
+## 🚀 Tính năng chính
 
-### Core Functionality
-- **User Authentication**: Secure login/register system with JWT tokens
-- **Posts Management**: Create, read, update, and delete posts
-- **Comments System**: Interactive commenting on posts with real-time updates
-- **User Profiles**: Personalized user experience with avatar support
-- **Responsive Design**: Mobile-first approach with modern UI/UX
+- **Xác thực người dùng**: Đăng ký, đăng nhập, đăng xuất
+- **Quản lý bài viết**: Xem bài viết
+- **Hệ thống bình luận**: Thêm và xem bình luận cho bài viết
+- **Giao diện responsive**: Tương thích với mọi thiết bị
+- **Quản lý state**: Sử dụng Zustand và React Query
+- **UI Components**: Hệ thống component được thiết kế theo nguyên tắc Atomic Design
 
-### Technical Features
-- **Next.js 14**: App Router with server-side rendering
-- **TypeScript**: Full type safety and better development experience
-- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
-- **State Management**: Zustand for client-side state management
-- **API Integration**: RESTful API with proper error handling
-- **Component Architecture**: Atomic design pattern for scalable components
+## 🛠️ Công nghệ sử dụng
 
-## 🛠️ Tech Stack
+### Frontend
+- **Next.js 15.5.2** - React framework với App Router
+- **React 19.1.0** - UI library
+- **TypeScript 5** - Type safety
+- **Tailwind CSS 4** - Styling framework
+- **Zustand** - State management
+- **React Query** - Server state management
+- **React Hook Form** - Form handling
+- **Axios** - HTTP client
 
-- **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: Tailwind CSS, PostCSS
-- **State Management**: Zustand
-- **HTTP Client**: Axios
-- **Icons**: Custom SVG icons
-- **Build Tool**: Next.js built-in bundler
-- **Package Manager**: Yarn
 
-## 📋 Prerequisites
+### Backend API
+- **Next.js API Routes** - Server-side API endpoints (Full-stack trong Next.js)
+- **JWT** - Authentication
+- **bcryptjs** - Password hashing
 
-Before you begin, ensure you have the following installed:
-- **Node.js** (version 18.17 or higher)
-- **Yarn** package manager
-- **Git** for version control
-
-## 🚀 Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <your-repository-url>
-   cd social
-   ```
-
-2. **Install dependencies**
-   ```bash
-   yarn install
-   ```
-
-3. **Environment Setup**
-   Create a `.env.local` file in the root directory:
-   ```env
-   # API Configuration
-   NEXT_PUBLIC_API_URL=http://localhost:3000/api
-   
-   # Authentication
-   JWT_SECRET=your-secret-key-here
-   
-   # Database (if applicable)
-   DATABASE_URL=your-database-connection-string
-   ```
-
-4. **Run the development server**
-   ```bash
-   yarn dev
-   ```
-
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 🏗️ Project Structure
+## 📁 Cấu trúc dự án
 
 ```
-social/
-├── src/
-│   ├── app/                 # Next.js app router pages
-│   ├── components/          # Reusable UI components
-│   │   ├── atoms/          # Basic building blocks
-│   │   ├── molecules/      # Composite components
-│   │   ├── organisms/      # Complex components
-│   │   └── templates/      # Page layouts
-│   ├── modules/            # Feature-based modules
-│   │   ├── auth/           # Authentication module
-│   │   ├── posts/          # Posts module
-│   │   └── comments/       # Comments module
-│   ├── hooks/              # Custom React hooks
-│   ├── stores/             # State management
-│   ├── types/              # TypeScript type definitions
-│   └── utils/              # Utility functions
-├── public/                 # Static assets
-├── styles/                 # Global styles and Tailwind config
-└── package.json            # Dependencies and scripts
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── login/             # Trang đăng nhập
+│   ├── register/          # Trang đăng ký
+│   └── post/[id]/         # Trang chi tiết bài viết
+├── components/             # React components
+│   ├── atoms/             # Components cơ bản (Button, Input, etc.)
+│   ├── molecules/         # Components phức tạp hơn
+│   ├── organisms/         # Components lớn (Header, PostList, etc.)
+│   └── templates/         # Layout templates
+├── modules/                # Feature modules
+│   ├── auth/              # Module xác thực
+│   ├── posts/             # Module bài viết
+│   └── comments/          # Module bình luận
+├── stores/                 # Zustand stores
+├── hooks/                  # Custom React hooks
+├── types/                  # TypeScript type definitions
+└── utils/                  # Utility functions
 ```
 
-## 🎯 Usage Guide
+## 🚀 Cài đặt và chạy dự án
 
-### Authentication
-1. **Register**: Create a new account with email and password
-2. **Login**: Sign in with your credentials
-3. **Profile**: Manage your user profile and settings
+### Yêu cầu hệ thống
+- Node.js 18+ 
+- Yarn hoặc npm
 
-### Creating Posts
-1. Navigate to the home page
-2. Use the post creation form
-3. Add content, images, and tags
-4. Publish your post
-
-### Interacting with Content
-- **Like/Unlike**: Click the like button on posts
-- **Comment**: Add comments to posts
-- **Share**: Share posts with other users
-- **Follow**: Follow other users to see their content
-
-### Navigation
-- **Home**: View all posts from followed users
-- **Profile**: Access your personal profile
-- **Search**: Find users and content
-- **Notifications**: Stay updated with latest activities
-
-## 🧪 Available Scripts
-
+### Bước 1: Clone dự án
 ```bash
-# Development
-yarn dev          # Start development server
-yarn build        # Build for production
-yarn start        # Start production server
-yarn lint         # Run ESLint
-yarn type-check   # Run TypeScript compiler check
-
-# Testing (if configured)
-yarn test         # Run tests
-yarn test:watch   # Run tests in watch mode
+git clone <repository-url>
+cd social
 ```
 
-## 🔧 Configuration
+### Bước 2: Cài đặt dependencies
+```bash
+yarn install
+# hoặc
+npm install
+```
 
-### Tailwind CSS
-The project uses Tailwind CSS for styling. Configuration can be found in `styles/tailwind.config.ts`.
+### Bước 3: Chạy dự án ở môi trường development
+```bash
+yarn dev
+# hoặc
+npm run dev
+```
 
-### TypeScript
-TypeScript configuration is in `tsconfig.json` with strict type checking enabled.
+Dự án sẽ chạy tại: `http://localhost:3000`
 
-### Next.js
-Next.js configuration is in `next.config.ts` with optimized settings for production.
+### Bước 4: Build và chạy production
+```bash
+yarn build
+yarn start
+# hoặc
+npm run build
+npm start
+```
+
+## �� Hướng dẫn sử dụng
+
+### 1. Đăng ký tài khoản
+- Truy cập `/register`
+- Điền thông tin: email, mật khẩu, xác nhận mật khẩu
+- Nhấn "Đăng ký" để tạo tài khoản mới
+
+### 2. Đăng nhập
+- Truy cập `/login`
+- Nhập email và mật khẩu
+- Nhấn "Đăng nhập" để vào hệ thống
+
+### 3. Xem bài viết
+- Trang chủ hiển thị danh sách tất cả bài viết
+- Nhấn vào bài viết để xem chi tiết
+- Sử dụng thanh tìm kiếm để tìm bài viết cụ thể
+
+### 4. Bình luận
+- Xem bài viết chi tiết
+- Cuộn xuống phần bình luận
+- Nhập nội dung bình luận
+- Nhấn "Gửi bình luận"
+
+## 🎨 Hệ thống Component
+
+### Atomic Design Pattern
+Dự án sử dụng nguyên tắc Atomic Design để tổ chức components:
+
+- **Atoms**: Components cơ bản (Button, Input, LoadingSpinner)
+- **Molecules**: Components phức tạp hơn (CommentForm, PostCard)
+- **Organisms**: Components lớn (Header, PostList, CommentsSection)
+- **Templates**: Layout templates (RootLayoutTemplate)
+
+### Styling
+- **Tailwind CSS**: Utility-first CSS framework
+- **Responsive Design**: Mobile-first approach
+
+
+### API Configuration
+Dự án sử dụng Next.js API Routes làm backend. Các endpoint API được định nghĩa trong `src/constants/api.ts`:
+
+- **Authentication**: `/api/auth/login`, `/api/auth/register`, `/api/auth/logout`, `/api/auth/me`
+- **Posts**: `/api/post`, `/api/post/[id]`, `/api/post/[id]/comments`
+
+Các API routes được implement trong thư mục `src/app/api/`:
+- `src/app/api/auth/` - Xử lý xác thực người dùng
+- `src/app/api/post/` - Quản lý bài viết và bình luận
 
 ## 📱 Responsive Design
 
-The application is built with a mobile-first approach and includes:
-- Responsive navigation menu
-- Adaptive layouts for different screen sizes
-- Touch-friendly interactions
-- Optimized images and assets
+Dự án được thiết kế responsive với các breakpoint:
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px  
+- **Desktop**: > 1024px
 
-## 🔒 Security Features
+## 🧪 Testing
 
-- JWT-based authentication
-- Protected API routes
-- Input validation and sanitization
-- Secure password handling
-- CORS protection
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Configure environment variables
-3. Deploy automatically on push to main branch
-
-### Other Platforms
-- **Netlify**: Configure build settings for Next.js
-- **AWS**: Use AWS Amplify or custom server setup
-- **Docker**: Build and deploy using containerization
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 Code Style
-
-- Follow TypeScript best practices
-- Use ESLint and Prettier for code formatting
-- Follow the atomic design pattern for components
-- Write meaningful commit messages
-- Include proper error handling
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Port already in use**
 ```bash
-# Kill process using port 3000
-npx kill-port 3000
+# Chạy tests
+yarn test
+
+# Chạy tests với coverage
+yarn test:coverage
+
+# Chạy tests trong watch mode
+yarn test:watch
 ```
 
-**Build errors**
+## 📦 Build và Deploy
+
+### Build Production
 ```bash
-# Clear Next.js cache
-rm -rf .next
-yarn install
 yarn build
 ```
 
-**TypeScript errors**
+### Deploy lên Vercel
+1. Kết nối repository với Vercel
+2. Cấu hình environment variables
+3. Deploy tự động khi push code
+
+### Deploy lên server khác
 ```bash
-# Check for type issues
-yarn type-check
+yarn build
+yarn start
 ```
 
-## 📚 Additional Resources
+## 📝 Scripts có sẵn
+
+- `yarn dev` - Chạy development server với Turbopack
+- `yarn build` - Build dự án cho production
+- `yarn start` - Chạy production server
+- `yarn lint` - Kiểm tra code style
+- `yarn type-check` - Kiểm tra TypeScript types
+
+### Lỗi build
+```bash
+# Xóa cache Next.js
+rm -rf .next
+yarn build
+```
+
+## 📚 Tài liệu tham khảo
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Zustand Documentation](https://github.com/pmndrs/zustand)
+- [React Query Documentation](https://tanstack.com/query/latest)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Support
-
-For support and questions:
-- Create an issue in the GitHub repository
-- Contact the development team
-- Check the documentation and troubleshooting guide
-
----
-
-**Happy coding! 🎉**
+Dự án này được phát hành dưới MIT License.

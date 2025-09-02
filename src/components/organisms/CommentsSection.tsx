@@ -1,7 +1,7 @@
 'use client';
 
-import { CommentForm } from '@/modules/comments/components/CommentForm';
-import { CommentList } from '@/modules/comments/components/CommentList';
+import { CommentForm } from '@/src/modules/comments/components/CommentForm';
+import { CommentList } from '@/src/modules/comments/components/CommentList';
 import { useAuthStore } from '@/src/stores/auth';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

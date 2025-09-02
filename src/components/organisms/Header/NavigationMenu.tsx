@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAuth } from '@/modules/auth/hooks/useAuth';
+import { useAuth } from '@/src/modules/auth/hooks/useAuth';
 import { UserProfile } from './UserProfile';
 
 export function NavigationMenu() {

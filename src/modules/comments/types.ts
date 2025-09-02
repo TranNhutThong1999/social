@@ -1,4 +1,4 @@
-import { User } from "@/modules/auth/types";
+import { User } from "../auth";
 
 export interface Comment {
   id: string;

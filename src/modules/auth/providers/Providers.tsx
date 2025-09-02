@@ -1,6 +1,5 @@
 'use client';
 
-import { authApi } from '@/modules/auth/services/auth.api';
 import {
   QueryClient,
   QueryClientProvider,
@@ -8,6 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/src/stores/auth';
+import { authApi } from '../services/auth.api';
 
 interface ProvidersProps {
   children: React.ReactNode;
