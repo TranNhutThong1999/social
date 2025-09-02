@@ -7,7 +7,12 @@ const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || 'your-secret-key';
 export async function GET(request: NextRequest) {
   try {
     const token = request.cookies.get('auth-token')?.value;
+    const refreshToken = request.cookies.get('refresh-token')?.value;
     
+    if (!token && !refreshToken) {
+      return NextResponse.json(null);
+    }
+
     if (!token) {
       return NextResponse.json(
         { error: 'No token provided' },
@@ -35,6 +40,13 @@ export async function GET(request: NextRequest) {
         path: '/',
       });
       
+        response.cookies.set('refresh-token', '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 0, 
+    path: '/',
+  });
       return response;
     }
     

@@ -11,4 +11,5 @@ export const PROTECTED_ROUTES = [ROUTES.POST] as const;
 
 export const COOKIE_NAMES = {
   AUTH_TOKEN: 'auth-token',
-} as const;
+  REFRESH_TOKEN: 'refresh-token',
+} as const; 

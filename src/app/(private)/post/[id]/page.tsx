@@ -1,29 +1,28 @@
+import { fetchWithAuth } from '@/src/api/fetchWithAuth';
 import { PostDetails } from '@/src/components/molecules';
-import { headers } from 'next/headers';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
 import { API_ENDPOINTS } from '@/src/constants/api';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { cache } from 'react';
+
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+const NEXT_PUBLIC_APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-async function getPost(id: string) {
+const getPost = async (id: string) => {
   try {
-    const headersList = await headers();
-    const host = headersList.get('host');
-    const protocol = process?.env.NODE_ENV === 'development' ? 'http' : 'https';
-    const response = await fetch(
-      `${protocol}://${host}/api/${API_ENDPOINTS.POSTS.DETAIL(id)}`,
+    const response = await fetchWithAuth(
+      `${NEXT_PUBLIC_API_URL}${API_ENDPOINTS.POSTS.DETAIL(id)}`,
       {
         cache: 'no-store',
       }
     );
 
     if (!response.ok) {
-      if (response.status === 404) {
-        return null;
-      }
       throw new Error(`Failed to fetch post: ${response.status}`);
     }
 
@@ -32,7 +31,7 @@ async function getPost(id: string) {
     console.error('Error fetching post:', error);
     throw error;
   }
-}
+};
 
 export async function generateMetadata({
   params,
@@ -66,16 +65,32 @@ export async function generateMetadata({
         post.body?.substring(0, 160) ||
         'Read this amazing post on our social platform.',
       type: 'article',
-      authors: [post.author?.name || 'Anonymous'],
-      publishedTime: post.createdAt,
-      modifiedTime: post.updatedAt,
+      url: `${NEXT_PUBLIC_APP_URL}/post/${id}`,
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : [
+            {
+              url: `${NEXT_PUBLIC_APP_URL}/next.svg`,
+              width: 1200,
+              height: 630,
+              alt: 'Social App',
+            },
+          ],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: post.title,
       description:
         post.body?.substring(0, 160) ||
         'Read this amazing post on our social platform.',
+      images: post.image ? [post.image] : [`${NEXT_PUBLIC_APP_URL}/next.svg`],
     },
   };
 }

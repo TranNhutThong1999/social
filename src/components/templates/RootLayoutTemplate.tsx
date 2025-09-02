@@ -10,8 +10,6 @@ export default async function RootLayoutTemplate({
 }: {
   children: React.ReactNode;
 }) {
-  const token = (await cookies()).get('auth-token')?.value;
-
   return (
     <html lang="en">
       <head>
@@ -21,7 +19,7 @@ export default async function RootLayoutTemplate({
         />
       </head>
       <body className={inter.className}>
-        <Providers token={token}>
+        <Providers>
           <article className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
             <Header />
             <main className="container mx-auto px-4 py-5 sm:py-12 max-w-6xl">

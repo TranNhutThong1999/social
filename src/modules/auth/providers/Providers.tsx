@@ -11,10 +11,9 @@ import { authApi } from '@/src/api';
 
 interface ProvidersProps {
   children: React.ReactNode;
-  token?: string;
 }
 
-function useAuthCheck(token?: string) {
+function useAuthCheck() {
   const { setAuthenticated, updateUser } = useAuthStore();
 
   const {
@@ -25,47 +24,39 @@ function useAuthCheck(token?: string) {
   } = useQuery({
     queryKey: ['auth', 'me'],
     queryFn: authApi.getCurrentUser,
-    retry: false,
-
-    enabled: !!token,
   });
 
   useEffect(() => {
-    if (isSuccess && user) {
+    if (isSuccess && !!user) {
       updateUser(user);
       setAuthenticated(true);
-    } else if (isError || (!token && !isLoading)) {
+    } else if (isError || !isLoading) {
       setAuthenticated(false);
       console.log('User not authenticated');
     }
-  }, [isSuccess, isError, user, token, isLoading]);
+  }, [isSuccess, isError, user, isLoading]);
 }
 
 function AuthProvider({
   children,
-  token,
 }: {
   children: React.ReactNode;
   token?: string;
 }) {
-  useAuthCheck(token);
+  useAuthCheck();
   return <>{children}</>;
 }
 
-export function Providers({ children, token }: ProvidersProps) {
+export function Providers({ children }: ProvidersProps) {
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
             staleTime: 5 * 60 * 1000,
-            retry: 1,
             refetchOnWindowFocus: false,
             refetchOnMount: false,
             gcTime: 10 * 60 * 1000,
-          },
-          mutations: {
-            retry: 1,
           },
         },
       })
@@ -73,7 +64,7 @@ export function Providers({ children, token }: ProvidersProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider token={token}>{children}</AuthProvider>
+      <AuthProvider>{children}</AuthProvider>
     </QueryClientProvider>
   );
 }

@@ -12,19 +12,19 @@ export interface AuthUser {
   avatar?: string;
 }
 
-export function verifyAuthToken(request: NextRequest): { user: AuthUser | null; error?: string } {
+export function verifyAuthToken(request: NextRequest): { user: AuthUser | null; error?: string; code?: string } {
   try {
     const token = request.cookies.get('auth-token')?.value;
     
     if (!token) {
-      return { user: null, error: 'No token provided' };
+      return { user: null, error: 'No token provided', code: 'NO_TOKEN' };
     }
 
     const decoded = jwt.verify(token, JWT_SECRET) as { userId: number; email: string };
     const user = users.find(u => u.id === decoded.userId);
     
     if (!user) {
-      return { user: null, error: 'User not found' };
+      return { user: null, error: 'User not found', code: 'USER_NOT_FOUND' };
     }
 
     return { 
@@ -37,7 +37,12 @@ export function verifyAuthToken(request: NextRequest): { user: AuthUser | null; 
       }
     };
   } catch (jwtError) {
-    return { user: null, error: 'Invalid token' };
+    if (jwtError instanceof jwt.TokenExpiredError) {
+      return { user: null, error: 'Token expired', code: 'TOKEN_EXPIRED' };
+    } else if (jwtError instanceof jwt.JsonWebTokenError) {
+      return { user: null, error: 'Invalid token', code: 'INVALID_TOKEN' };
+    }
+    return { user: null, error: 'Token verification failed', code: 'TOKEN_VERIFICATION_FAILED' };
   }
 }
 
@@ -48,7 +53,10 @@ export function requireAuth(request: NextRequest): { user: AuthUser; response?: 
     return {
       user: null as any,
       response: NextResponse.json(
-        { error: authResult.error || 'Authentication required' },
+        { 
+          error: authResult.error || 'Authentication required',
+          code: authResult.code || 'AUTH_REQUIRED'
+        },
         { status: 401 }
       )
     };

@@ -32,10 +32,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const token = jwt.sign(
+    // Tạo access token (thời hạn ngắn)
+    const accessToken = jwt.sign(
       { userId: user.id, email: user.email },
       JWT_SECRET,
-      { expiresIn: '5Minutes' }
+      { expiresIn: '10Minutes' }
+    );
+
+    // Tạo refresh token (thời hạn dài)
+    const refreshToken = jwt.sign(
+      { userId: user.id, email: user.email },
+      JWT_SECRET,
+      { expiresIn: '7d' }
     );
 
     const response = NextResponse.json({
@@ -43,11 +51,21 @@ export async function POST(request: NextRequest) {
       success: true,
     });
 
-    response.cookies.set('auth-token', token, {
+    // Set access token cookie
+    response.cookies.set('auth-token', accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60, 
+      maxAge: 10 * 60, 
+      path: '/',
+    });
+
+    // Set refresh token cookie
+    response.cookies.set('refresh-token', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60, // 7 ngày
       path: '/',
     });
 

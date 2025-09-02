@@ -1,14 +1,17 @@
+const PREFIX_API = '/api';
+
 export const API_ENDPOINTS = {
   AUTH: {
-    LOGIN: '/auth/login',
+    LOGIN: `${PREFIX_API}/auth/login`,
     REGISTER: '/auth/register',
-    LOGOUT: '/auth/logout',
-    ME: '/auth/me',
+    LOGOUT: `${PREFIX_API}/auth/logout`,
+    ME: `${PREFIX_API}/auth/me`,
+    REFRESH_TOKEN: `${PREFIX_API}/auth/refresh-token`,
   },
   POSTS: {
-    LIST: '/post',
-    DETAIL: (id: string) => `/post/${id}`,
-    COMMENTS: (id: string) => `/post/${id}/comments`,
+    LIST: `${PREFIX_API}/post`,
+    DETAIL: (id: string) => `${PREFIX_API}/post/${id}`,
+    COMMENTS: (id: string) => `${PREFIX_API}/post/${id}/comments`,
   },
 } as const;
 

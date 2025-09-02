@@ -5,8 +5,9 @@ import { AUTH_ROUTES, COOKIE_NAMES, PROTECTED_ROUTES, ROUTES } from './constants
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  
   const authToken = request.cookies.get(COOKIE_NAMES.AUTH_TOKEN)?.value;
+  const refreshToken = request.cookies.get(COOKIE_NAMES.REFRESH_TOKEN)?.value;
+  const token = authToken || refreshToken;
 
   const isAuthRoute = AUTH_ROUTES.includes(pathname as typeof AUTH_ROUTES[number]);
   
@@ -14,13 +15,13 @@ export function middleware(request: NextRequest) {
     pathname.startsWith(route)
   );
 
-  if (isProtectedRoute && !authToken) {
+  if (isProtectedRoute && !token) {
     const loginUrl = new URL(ROUTES.LOGIN, request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
   
-  if (authToken && isAuthRoute) {
+  if (token && isAuthRoute) {
     return NextResponse.redirect(new URL('/', request.url));
   }
   

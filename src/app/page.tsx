@@ -8,7 +8,7 @@ import { usePosts } from '@/src/modules/posts/hooks/usePosts';
 export default function HomePage() {
   const { getParams, setParams } = useQueryParams();
   const { page, limit, sortBy, sortOrder, search } = getParams();
-  const { data, isLoading, error } = usePosts({
+  const { data, isLoading } = usePosts({
     search,
     page,
     limit,

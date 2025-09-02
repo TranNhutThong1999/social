@@ -87,3 +87,8 @@ export interface AuthResponse {
   user: User;
   success: boolean;
 }
+
+export interface RefreshTokenResponse {
+  success: boolean;
+  message: string;
+}

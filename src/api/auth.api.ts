@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { apiClient } from './axios';
-import { LoginCredentials, RegisterCredentials, User, AuthResponse } from '@/src/types/types';
+import { LoginCredentials, RegisterCredentials, User, AuthResponse, RefreshTokenResponse } from '@/src/types/types';
 import { API_ENDPOINTS } from '@/src/constants/api';
 
 export const authApi = {
@@ -50,6 +50,18 @@ export const authApi = {
     } catch (error: unknown) {
       console.warn('Logout API failed, but proceeding with logout');
     } finally {
+    }
+  },
+
+  async refreshToken(): Promise<RefreshTokenResponse> {
+    try {
+      const response = await apiClient.post(API_ENDPOINTS.AUTH.REFRESH_TOKEN);
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(error.response?.data?.message || 'Token refresh failed');
+      }
+      throw new Error('Token refresh failed');
     }
   },
 };
