@@ -5,6 +5,7 @@ import { usePosts } from '@/src/modules/posts/hooks/usePosts';
 import { useQueryParams } from '@/src/hooks/useQueryParams';
 import { SearchAndFilter } from '@/src/components/molecules/common';
 import { ExclamationIcon } from '../components/icons';
+import { Button } from '../components';
 
 export default function HomePage() {
   const { getParams, setParams } = useQueryParams();
@@ -40,12 +41,13 @@ export default function HomePage() {
               We couldn't load the posts. Please try again later.
             </p>
           </aside>
-          <button
+          <Button
             onClick={() => window.location.reload()}
             className="bg-indigo-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium text-sm sm:text-base"
+            aria-label="Reload page to try again"
           >
             Try Again
-          </button>
+          </Button>
         </section>
       </article>
     );
@@ -53,6 +55,15 @@ export default function HomePage() {
 
   return (
     <article className="max-w-7xl mx-auto">
+      <header className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 text-center">
+          Discover Amazing Stories
+        </h1>
+        <p className="text-gray-600 text-center mt-2 text-sm sm:text-base">
+          Explore stories from our community of writers and readers
+        </p>
+      </header>
+
       <SearchAndFilter
         onChange={handleSearch}
         value={{ search, sortBy, sortOrder }}

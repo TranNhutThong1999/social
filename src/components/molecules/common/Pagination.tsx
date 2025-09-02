@@ -42,6 +42,7 @@ export function Pagination({
           leftIcon={
             <ArrowIcon direction="left" className="w-3 h-3 sm:w-4 sm:h-4" />
           }
+          aria-label="Go to previous page"
         >
           <p className="hidden sm:inline">Previous</p>
         </Button>
@@ -56,6 +57,8 @@ export function Pagination({
               className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl ${
                 page === currentPage ? '' : 'hover:bg-gray-50'
               }`}
+              aria-label={`Go to page ${page}`}
+              aria-current={page === currentPage ? 'page' : undefined}
             >
               {page}
             </Button>
@@ -71,6 +74,7 @@ export function Pagination({
           rightIcon={
             <ArrowIcon direction="right" className="w-3 h-3 sm:w-4 sm:h-4" />
           }
+          aria-label="Go to next page"
         >
           <p className="hidden sm:inline">Next</p>
         </Button>
@@ -84,6 +88,7 @@ export function Pagination({
             disabled={currentPage === 1}
             variant="ghost"
             className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm"
+            aria-label="Go to first page"
           >
             First
           </Button>
@@ -93,6 +98,7 @@ export function Pagination({
             disabled={currentPage === totalPages}
             variant="ghost"
             className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm"
+            aria-label="Go to last page"
           >
             Last
           </Button>
