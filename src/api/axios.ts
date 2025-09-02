@@ -4,7 +4,7 @@ import { ROUTES } from '@/src/constants/routes';
 import { API_ENDPOINTS } from '../constants/api';
 import { authApi } from './auth.api';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export const apiClient: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -20,7 +20,7 @@ apiClient.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     
-    const isRefreshTokenRequest = originalRequest.url?.includes('/auth/refresh-token');
+    const isRefreshTokenRequest = originalRequest.url?.includes(API_ENDPOINTS.AUTH.REFRESH_TOKEN);
     
     if (error.response?.status === 401 && !originalRequest._retry && !isRefreshTokenRequest) {
       originalRequest._retry = true;
