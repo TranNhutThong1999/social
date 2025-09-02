@@ -25,7 +25,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
           showToggle ? (
             <div
               onClick={togglePasswordVisibility}
-              className="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors duration-200 focus:outline-none focus:text-gray-600"
+              className="text-gray-400 size-5 cursor-pointer hover:text-gray-600 transition-colors duration-200 focus:outline-none focus:text-gray-600"
               aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
               {showPassword ? (

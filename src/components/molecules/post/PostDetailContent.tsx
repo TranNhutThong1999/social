@@ -8,7 +8,7 @@ import {
 } from '@/src/components/atoms';
 import { useRouter } from 'next/navigation';
 import { PostContent } from './PostContent';
-import { PostHeader } from './PostHeader';
+import { PostFooter } from './PostFooter';
 
 interface PostDetailContentProps {
   post: Post;
@@ -29,7 +29,7 @@ export function PostDetailContent({ post }: PostDetailContentProps) {
 
       <PostContent title={post.title} body={post.body} />
 
-      <PostHeader
+      <PostFooter
         postId={post.id}
         authorName={post.author?.name || 'Unknown'}
         createdAt={post.createdAt}

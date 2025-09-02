@@ -5,7 +5,7 @@ export { PostCardSkeleton } from './PostCardSkeleton';
 export { PostListSkeleton } from './PostListSkeleton';
 export { PostContent } from './PostContent';
 export { PostDetailContent } from './PostDetailContent';
-export { PostHeader } from './PostHeader';
+export { PostFooter as PostHeader } from './PostFooter';
 
 // Skeleton Components
 export { PostDetailSkeleton } from './PostDetailSkeleton';
