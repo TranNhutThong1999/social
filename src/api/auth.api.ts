@@ -5,25 +5,15 @@ import { API_ENDPOINTS } from '@/src/constants/api';
 
 export const authApi = {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
-    try {
       const response = await apiClient.post(API_ENDPOINTS.AUTH.LOGIN, credentials);
-      
       return response.data;
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        throw new Error(error.response?.data?.message || 'Login failed');
-      }
-      throw new Error('Login failed');
-    }
+   
   },
 
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
-    try {
       const response = await apiClient.post(API_ENDPOINTS.AUTH.REGISTER, credentials);
       return response.data;
-    } catch (error: any) {
-        throw new Error(error.response?.data?.error || 'Registration failed');
-    }
+   
   },
 
   async getCurrentUser() {

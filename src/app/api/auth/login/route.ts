@@ -32,14 +32,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Tạo access token (thời hạn ngắn)
     const accessToken = jwt.sign(
       { userId: user.id, email: user.email },
       JWT_SECRET,
       { expiresIn: '10m' }
     );
 
-    // Tạo refresh token (thời hạn dài)
     const refreshToken = jwt.sign(
       { userId: user.id, email: user.email },
       JWT_SECRET,

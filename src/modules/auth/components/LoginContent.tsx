@@ -37,7 +37,7 @@ export default function LoginPageContent() {
       }
     },
     onError: (error: any) => {
-      toast.error(error.response?.data?.error || 'Failed to log in');
+      toast.error(error.response?.data.error || 'Failed to log in');
     },
   });
 

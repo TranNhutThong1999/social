@@ -52,7 +52,7 @@ export default function RegisterPageContent() {
       }
     },
     onError: (error: any) => {
-      toast.error(error || 'Registration failed');
+      toast.error(error.response?.data.error || 'Registration failed');
     },
   });
 

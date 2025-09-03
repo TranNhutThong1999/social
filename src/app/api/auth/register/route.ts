@@ -15,8 +15,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate username from email (remove @domain.com and replace dots with underscores)
-    const username = email.split('@')[0].replace(/\./g, '_');
 
     const existingUser = users.find(u => u.email === email);
     if (existingUser) {
@@ -26,14 +24,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create new user
     const newUser = {
       id: users.length + 1,
       name,
       email,
-      username,
       password: password,
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`,
+      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`,
       createdAt: new Date().toISOString(),
     };
 
