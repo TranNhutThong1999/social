@@ -1,18 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { users } from '@/src/mocks/users';
+import { User } from '@/src/types/types';
 
 const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || 'your-secret-key';
 
-export interface AuthUser {
-  id: number;
-  email: string;
-  name: string;
-  username: string;
-  avatar?: string;
-}
 
-export function verifyAuthToken(request: NextRequest): { user: AuthUser | null; error?: string; code?: string } {
+export function verifyAuthToken(request: NextRequest): { user: User | null; error?: string; code?: string } {
   try {
     const token = request.cookies.get('auth-token')?.value;
     
@@ -32,8 +26,8 @@ export function verifyAuthToken(request: NextRequest): { user: AuthUser | null; 
         id: user.id,
         email: user.email,
         name: user.name,
-        username: user.username,
         avatar: user.avatar,
+        createdAt: user.createdAt,
       }
     };
   } catch (jwtError) {
@@ -46,7 +40,7 @@ export function verifyAuthToken(request: NextRequest): { user: AuthUser | null; 
   }
 }
 
-export function requireAuth(request: NextRequest): { user: AuthUser; response?: NextResponse } {
+export function requireAuth(request: NextRequest): { user: User; response?: NextResponse } {
   const authResult = verifyAuthToken(request);
   
   if (!authResult.user) {

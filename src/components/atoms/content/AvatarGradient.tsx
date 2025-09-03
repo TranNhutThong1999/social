@@ -2,11 +2,11 @@ import { generateAvatarColor } from '@/src/utils';
 
 export interface AvatarGradientProps {
   id: number | string;
-  authorName: string;
+  userName: string;
 }
-const AvatarGradient = ({ id, authorName }: AvatarGradientProps) => {
-  const lightColor = generateAvatarColor(authorName);
-  const darkColor = generateAvatarColor(authorName, true);
+const AvatarGradient = ({ id, userName }: AvatarGradientProps) => {
+  const lightColor = generateAvatarColor(userName);
+  const darkColor = generateAvatarColor(userName, true);
 
   return (
     <aside className="flex items-center sm:mr-6 justify-center">
@@ -42,7 +42,7 @@ const AvatarGradient = ({ id, authorName }: AvatarGradientProps) => {
           />
         </svg>
       </figure>
-      <p className="text-sm sm:text-base text-gray-500">{authorName}</p>
+      <p className="text-sm sm:text-base text-gray-500">{userName}</p>
     </aside>
   );
 };

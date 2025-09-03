@@ -14,7 +14,7 @@ interface PostCardProps {
 }
 
 export const PostCard = memo(function PostCard({ post }: PostCardProps) {
-  const authorName = post.author?.name || 'Unknown';
+  const userName = post.user?.name || 'Unknown';
   const commentsCount = post.commentsCount || 0;
   return (
     <Link href={`/post/${post.id}`}>
@@ -25,7 +25,7 @@ export const PostCard = memo(function PostCard({ post }: PostCardProps) {
               {post.title}
             </h2>
             <aside className="flex justify-between items-center sm:justify-between space-y-2 sm:space-y-0 text-sm">
-              <AvatarGradient authorName={authorName} id={post.id} />
+              <AvatarGradient userName={userName} id={post.id} />
               <time className="text-gray-500 flex items-center ml-5 text-sm">
                 <CalendarIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                 {formatDate(post.createdAt)}

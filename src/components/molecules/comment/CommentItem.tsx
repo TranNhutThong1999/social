@@ -10,7 +10,7 @@ interface CommentItemProps {
 export const CommentItem = React.memo(function CommentItem({
   comment,
 }: CommentItemProps) {
-  const authorName = comment.user?.name || 'Unknown';
+  const userName = comment.user?.name || 'Unknown';
 
   return (
     <article
@@ -18,7 +18,7 @@ export const CommentItem = React.memo(function CommentItem({
       className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4 slide-in"
     >
       <header className="flex items-center mb-2 sm:mb-3">
-        <AvatarGradient id={comment.id} authorName={authorName} />
+        <AvatarGradient id={comment.id} userName={userName} />
         <time className="text-gray-500 text-xs sm:text-sm ml-2">
           {formatDate(comment.createdAt)}
         </time>

@@ -59,15 +59,10 @@ export async function POST(
     const newComment = {
       id: comments.length + 1,
       postId,
-      authorId: user.id,
+      userId: user.id,
       body: body.trim(),
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      author: {
-        id: user.id,
-        name: user.name,
-        avatar: user.avatar,
-      },
       user: {
         id: user.id,
         name: user.name,

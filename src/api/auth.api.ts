@@ -7,13 +7,13 @@ export const authApi = {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
       const response = await apiClient.post(API_ENDPOINTS.AUTH.LOGIN, credentials);
       return response.data;
-   
+  
   },
 
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
       const response = await apiClient.post(API_ENDPOINTS.AUTH.REGISTER, credentials);
       return response.data;
-   
+  
   },
 
   async getCurrentUser() {

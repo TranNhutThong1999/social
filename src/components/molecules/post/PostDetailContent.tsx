@@ -40,7 +40,7 @@ export function PostDetailContent({ post }: PostDetailContentProps) {
 
       <PostFooter
         postId={post.id}
-        authorName={post.author?.name || 'Unknown'}
+        userName={post.user?.name || 'Unknown'}
         createdAt={post.createdAt}
       />
     </ArticleContainer>

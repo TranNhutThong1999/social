@@ -3,7 +3,6 @@ export interface User {
   id: number;
   name: string;
   email: string;
-  username: string;
   avatar?: string;
   createdAt: string;
 }
@@ -15,10 +14,9 @@ export interface Post {
   userId: number;
   createdAt: string;
   updatedAt: string;
-  author?: {
+  user?: {
     id: number;
     name: string;
-    username: string;
     avatar?: string;
   };
   commentsCount?:number
@@ -37,12 +35,7 @@ export interface Comment {
     name: string;
     avatar?: string;
   };
-  author?: {
-    id: number;
-    name: string;
-    username: string;
-    avatar?: string;
-  };
+
 }
 
 export interface CreateCommentData {

@@ -39,7 +39,7 @@ export async function GET(
       currentUser: {
         id: user.id,
         name: user.name,
-        username: user.username,
+        email: user.email,
         avatar: user.avatar,
       },
       // Add any authenticated-only data here
