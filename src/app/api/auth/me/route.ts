@@ -31,7 +31,6 @@ export async function GET(request: NextRequest) {
         { status: 401 }
       );
       
-      // Clear the expired token cookie
       response.cookies.set('auth-token', '', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
@@ -50,7 +49,6 @@ export async function GET(request: NextRequest) {
       return response;
     }
     
-    // Find user by ID
     const user = users.find(u => u.id === decoded.userId);
     if (!user) {
       return NextResponse.json(
@@ -59,7 +57,6 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Return user data
     return NextResponse.json(user);
   } catch (error) {
     console.error('Get current user error:', error);

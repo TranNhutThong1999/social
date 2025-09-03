@@ -12,7 +12,7 @@ const sizeClasses = {
   sm: 'h-8 px-3',
   md: 'h-10 px-4',
   lg: 'h-12 px-6',
-  custom: 'h-10 px-4', // Default custom size
+  custom: 'h-10 px-4',
 } as const;
 
 const variantClasses = {

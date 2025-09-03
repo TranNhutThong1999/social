@@ -11,7 +11,7 @@ const sizeClasses = {
   sm: 'w-4 h-4',
   md: 'w-5 h-5',
   lg: 'w-6 h-6',
-  custom: 'w-5 h-5', // Default custom size
+  custom: 'w-5 h-5',
 } as const;
 
 const roundedClasses = {

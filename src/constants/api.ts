@@ -19,3 +19,10 @@ export const API_CONFIG = {
   TIMEOUT: 10000,
   RETRY_ATTEMPTS: 3,
 } as const;
+
+export const ERROR_CODE = {
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  INTERNAL_SERVER_ERROR: 500,
+} as const;

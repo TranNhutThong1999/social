@@ -49,7 +49,7 @@ export function SearchAndFilter({
   onChange,
   value = DEFAULT_FILTER,
   className = '',
-  placeholder = 'Search for stories, authors',
+  placeholder = 'Search for title, content',
   disabled = false,
 }: SearchAndFilterProps) {
   const [filter, setFilter] = useState<PostsFilter>(value);

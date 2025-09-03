@@ -3,7 +3,6 @@ import { PostDetails } from '@/src/components/molecules';
 import { API_ENDPOINTS } from '@/src/constants/api';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { cache } from 'react';
 
 const NEXT_PUBLIC_APP_URL =
   process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
@@ -14,12 +13,9 @@ interface PageProps {
 
 const getPost = async (id: string) => {
   try {
-    const response = await fetchWithAuth(
-      `${API_ENDPOINTS.POSTS.DETAIL(id)}`,
-      {
-        cache: 'no-store',
-      }
-    );
+    const response = await fetchWithAuth(`${API_ENDPOINTS.POSTS.DETAIL(id)}`, {
+      cache: 'no-store',
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch post: ${response.status}`);
@@ -58,39 +54,6 @@ export async function generateMetadata({
     description:
       post.body?.substring(0, 160) ||
       'Read this amazing post on our social platform.',
-    openGraph: {
-      title: post.title,
-      description:
-        post.body?.substring(0, 160) ||
-        'Read this amazing post on our social platform.',
-      type: 'article',
-      url: `${NEXT_PUBLIC_APP_URL}/post/${id}`,
-      images: post.image
-        ? [
-            {
-              url: post.image,
-              width: 1200,
-              height: 630,
-              alt: post.title,
-            },
-          ]
-        : [
-            {
-              url: `${NEXT_PUBLIC_APP_URL}/next.svg`,
-              width: 1200,
-              height: 630,
-              alt: 'Social App',
-            },
-          ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description:
-        post.body?.substring(0, 160) ||
-        'Read this amazing post on our social platform.',
-      images: post.image ? [post.image] : [`${NEXT_PUBLIC_APP_URL}/next.svg`],
-    },
   };
 }
 

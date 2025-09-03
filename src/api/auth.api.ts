@@ -20,7 +20,6 @@ export const authApi = {
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
     try {
       const response = await apiClient.post(API_ENDPOINTS.AUTH.REGISTER, credentials);
-      
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -32,7 +31,6 @@ export const authApi = {
 
   async getCurrentUser() {
     try {
-      
       const response = await apiClient.get(API_ENDPOINTS.AUTH.ME);
       return response.data;
     } catch (error: unknown) {
@@ -43,13 +41,13 @@ export const authApi = {
     }
   },
 
-
   async logout(): Promise<void> {
     try {
-      await apiClient.post(API_ENDPOINTS.AUTH.LOGOUT, {});
+      await apiClient.post(API_ENDPOINTS.AUTH.LOGOUT);
     } catch (error: unknown) {
-      console.warn('Logout API failed, but proceeding with logout');
+      console.log('Logout API failed, but proceeding with logout');
     } finally {
+      // Always clear local state
     }
   },
 

@@ -7,7 +7,6 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // Require authentication for accessing comments
     const authResult = requireAuth(request);
     if (authResult.response) {
       return authResult.response;

@@ -26,7 +26,6 @@ export async function GET(
       );
     }
 
-    // Require authentication for accessing post details
     const authResult = requireAuth(request);
     if (authResult.response) {
       return authResult.response;
@@ -34,8 +33,6 @@ export async function GET(
 
     const user = authResult.user;
 
-    // You can add authenticated-only features here
-    // For example, mark if the current user has liked the post
     const responseData = {
       ...post,
       isAuthenticated: true,

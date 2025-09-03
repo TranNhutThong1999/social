@@ -24,7 +24,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Tìm user từ refresh token
     const user = users.find(u => u.id === decoded.userId);
     if (!user) {
       return NextResponse.json(

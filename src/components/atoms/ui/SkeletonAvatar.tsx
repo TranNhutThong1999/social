@@ -11,7 +11,7 @@ const sizeClasses = {
   md: 'w-10 h-10',
   lg: 'w-12 h-12',
   xl: 'w-16 h-16',
-  custom: 'w-10 h-10', // Default custom size
+  custom: 'w-10 h-10',
 } as const;
 
 const roundedClasses = {
@@ -28,7 +28,7 @@ export const SkeletonAvatar = forwardRef<HTMLDivElement, SkeletonAvatarProps>(
         className={cn(
           sizeClasses[size],
           roundedClasses[rounded],
-          'bg-gray-200 dark:bg-gray-300 animate-pulse',
+          'bg-gray-100 dark:bg-gray-200 animate-pulse',
           className
         )}
         {...props}
