@@ -9,6 +9,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { PostContent } from './PostContent';
 import { PostFooter } from './PostFooter';
+import { ROUTES } from '@/src/constants/routes';
 
 interface PostDetailContentProps {
   post: Post;
@@ -18,7 +19,15 @@ export function PostDetailContent({ post }: PostDetailContentProps) {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.back();
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      try {
+        router.back();
+      } catch (error) {
+        router.push(ROUTES.HOME);
+      }
+    } else {
+      router.push(ROUTES.HOME);
+    }
   };
 
   return (
