@@ -27,6 +27,10 @@ Experience the application live with all features including user authentication,
 - This is a demo/development version for UI/UX demonstration purposes
 - For production use, a proper database backend should be implemented
 
+**Demo Accounts**: For testing purposes, the application provides pre-configured demo accounts that are always available:
+- john@example.com / password123
+- jane@example.com / password123
+
 ## 🛠️ Technologies Used
 
 ### Frontend
@@ -119,6 +123,13 @@ npm start
 - Enter email and password
 - Click "Login" to access the system
 - **Note**: You can only login with accounts created in the current browser session
+
+#### Demo Accounts Available
+For testing purposes, you can use these pre-configured demo accounts:
+- **Email**: john@example.com | **Password**: password123
+- **Email**: jane@example.com | **Password**: password123
+
+These demo accounts are available directly on the login page for easy access.
 
 ### 3. View Posts
 - Homepage displays a list of all posts
