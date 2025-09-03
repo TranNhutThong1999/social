@@ -3,7 +3,7 @@ const PREFIX_API = '/api';
 export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: `${PREFIX_API}/auth/login`,
-    REGISTER: '/auth/register',
+    REGISTER: `${PREFIX_API}/auth/register`,
     LOGOUT: `${PREFIX_API}/auth/logout`,
     ME: `${PREFIX_API}/auth/me`,
     REFRESH_TOKEN: `${PREFIX_API}/auth/refresh-token`,

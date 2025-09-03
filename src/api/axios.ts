@@ -22,8 +22,10 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config;
     const {status} = error.response;
     const isRefreshTokenRequest = originalRequest.url?.includes(API_ENDPOINTS.AUTH.REFRESH_TOKEN);
+    const isLoginRequest = originalRequest.url?.includes(API_ENDPOINTS.AUTH.LOGIN);
+    const isRegisterRequest = originalRequest.url?.includes(API_ENDPOINTS.AUTH.REGISTER);
     
-    if (status === ERROR_CODE.UNAUTHORIZED && !originalRequest._retry && !isRefreshTokenRequest) {
+    if (status === ERROR_CODE.UNAUTHORIZED && !originalRequest._retry && !isRefreshTokenRequest && !isLoginRequest && !isRegisterRequest) {
       originalRequest._retry = true;
       try {
         await tokenManager.refreshTokenCSR();

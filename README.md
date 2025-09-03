@@ -2,6 +2,14 @@
 
 A modern social media blog application built with Next.js, React, and TypeScript.
 
+**Repository**: [https://github.com/TranNhutThong1999/social.git](https://github.com/TranNhutThong1999/social.git)
+
+## 🌐 Live Demo
+
+**Demo Link**: [https://social-xr23.vercel.app/](https://social-xr23.vercel.app/)
+
+Experience the application live with all features including user authentication, post management, and comment system.
+
 ## 🚀 Main Features
 
 - **User Authentication**: Registration, login, logout
@@ -10,6 +18,14 @@ A modern social media blog application built with Next.js, React, and TypeScript
 - **Responsive Interface**: Compatible with all devices
 - **State Management**: Using Zustand and React Query
 - **UI Components**: Component system designed following Atomic Design principles
+
+## ⚠️ Important Notice
+
+**Data Storage Limitation**: This application currently stores user registration data and comments only on the client-side (browser) without a persistent database. This means:
+- User accounts and comments will be lost when the browser is refreshed or closed
+- Data is not synchronized across different devices or browsers
+- This is a demo/development version for UI/UX demonstration purposes
+- For production use, a proper database backend should be implemented
 
 ## 🛠️ Technologies Used
 
@@ -27,6 +43,7 @@ A modern social media blog application built with Next.js, React, and TypeScript
 ### Backend API
 - **Next.js API Routes** - Server-side API endpoints (Full-stack within Next.js)
 - **JWT** - Authentication
+- **Client-side Storage** - Data stored in browser memory/localStorage (no persistent database)
 
 ## 📁 Project Structure
 
@@ -55,12 +72,12 @@ src/
 ## 🚀 Installation and Running the Project
 
 ### System Requirements
-- Node.js 18+ 
+- Node.js 22.11.0
 - Yarn or npm
 
 ### Step 1: Clone the project
 ```bash
-git clone <repository-url>
+git clone https://github.com/TranNhutThong1999/social.git
 cd social
 ```
 
@@ -95,11 +112,13 @@ npm start
 - Visit `/register`
 - Fill in information: email, password, confirm password
 - Click "Register" to create a new account
+- **Note**: Account data is stored only in browser memory and will be lost on page refresh
 
 ### 2. Login
 - Visit `/login`
 - Enter email and password
 - Click "Login" to access the system
+- **Note**: You can only login with accounts created in the current browser session
 
 ### 3. View Posts
 - Homepage displays a list of all posts
@@ -111,6 +130,7 @@ npm start
 - Scroll down to the comments section
 - Enter comment content
 - Click "Send Comment"
+- **Note**: Comments are stored only in browser memory and will be lost on page refresh
 
 ## 🎨 Component System
 
@@ -143,19 +163,6 @@ The project is designed to be responsive with the following breakpoints:
 - **Mobile**: < 768px
 - **Tablet**: 768px - 1024px  
 - **Desktop**: > 1024px
-
-## 🧪 Testing
-
-```bash
-# Run tests
-yarn test
-
-# Run tests with coverage
-yarn test:coverage
-
-# Run tests in watch mode
-yarn test:watch
-```
 
 ## 📦 Build and Deploy
 

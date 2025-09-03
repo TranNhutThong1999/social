@@ -6,16 +6,19 @@ const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || 'your-secret-key';
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, username, password } = await request.json();
+    const { name, email, password } = await request.json();
 
-    if (!name || !email || !username || !password) {
+    if (!name || !email || !password) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: 'Name, email, and password are required' },
         { status: 400 }
       );
     }
 
-    const existingUser = users.find(u => u.email === email || u.username === username);
+    // Generate username from email (remove @domain.com and replace dots with underscores)
+    const username = email.split('@')[0].replace(/\./g, '_');
+
+    const existingUser = users.find(u => u.email === email);
     if (existingUser) {
       return NextResponse.json(
         { error: 'User already exists' },

@@ -21,11 +21,8 @@ export const authApi = {
     try {
       const response = await apiClient.post(API_ENDPOINTS.AUTH.REGISTER, credentials);
       return response.data;
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        throw new Error(error.response?.data?.message || 'Registration failed');
-      }
-      throw new Error('Registration failed');
+    } catch (error: any) {
+        throw new Error(error.response?.data?.error || 'Registration failed');
     }
   },
 
