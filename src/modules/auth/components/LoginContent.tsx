@@ -33,11 +33,7 @@ export default function LoginPageContent() {
       console.log('redirectTo:', redirectTo);
 
       const targetPath = redirectTo || '/';
-
-      setTimeout(() => {
-        router.refresh();
-        router.replace(targetPath);
-      }, 300);
+      router.replace(targetPath);
     },
     onError: (error: any) => {
       console.error('Login error:', error);

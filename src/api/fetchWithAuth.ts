@@ -1,8 +1,16 @@
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { API_ENDPOINTS } from '../constants/api';
 import { tokenManager } from '../libs/token-manager';
+import { ROUTES } from '../constants/routes';
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000';
+
+async function getCurrentPathname() {
+    const headerList = await headers();
+    const middlewarePathname = headerList.get('x-pathname');
+    return middlewarePathname ?? '/'
+   
+}
 
 export async function fetchWithAuth(
   input: RequestInfo | URL,
@@ -11,7 +19,6 @@ export async function fetchWithAuth(
   const cookieStore = await cookies();
   const cookieString = cookieStore.toString();
   const hasRefreshToken = /(^|;\s*)refresh-token=/.test(cookieString);
-  console.log('NEXT_PUBLIC_API_URL', NEXT_PUBLIC_API_URL);
   const url = `${NEXT_PUBLIC_API_URL}${input}`;
 
   const refreshUrl = `${NEXT_PUBLIC_API_URL}${API_ENDPOINTS.AUTH.REFRESH_TOKEN}`;
@@ -48,7 +55,9 @@ export async function fetchWithAuth(
       }
     }
     
-    redirect('/login');
+    const pathname = await getCurrentPathname();
+    redirect(`${ROUTES.LOGIN}?redirect=${encodeURIComponent(pathname)}`);
+
   }
   return response;
 }

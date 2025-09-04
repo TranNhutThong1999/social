@@ -46,11 +46,7 @@ export default function RegisterPageContent() {
       toast.success('Registration successful!');
       const redirectTo = searchParams.get('redirect');
       const targetPath = redirectTo || '/';
-
-      router.refresh();
-      setTimeout(() => {
-        router.replace(targetPath);
-      }, 200);
+      router.replace(targetPath);
     },
     onError: (error: any) => {
       toast.error(error.response?.data.error || 'Registration failed');
