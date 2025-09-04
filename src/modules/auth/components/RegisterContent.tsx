@@ -45,11 +45,12 @@ export default function RegisterPageContent() {
       login(data.user);
       toast.success('Registration successful!');
       const redirectTo = searchParams.get('redirect');
-      if (redirectTo) {
-        router.push(redirectTo);
-      } else {
-        router.push('/');
-      }
+      const targetPath = redirectTo || '/';
+
+      router.refresh();
+      setTimeout(() => {
+        router.replace(targetPath);
+      }, 200);
     },
     onError: (error: any) => {
       toast.error(error.response?.data.error || 'Registration failed');

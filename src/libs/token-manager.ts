@@ -2,7 +2,8 @@ import { API_ENDPOINTS } from "../constants/api";
 
 class TokenManager {
   private static instance: TokenManager;
-  private refreshPromise: Promise<any> | null = null;
+  private csrRefreshPromise: Promise<any> | null = null;
+  private ssrRefreshPromise: Promise<any> | null = null;
 
   static getInstance(): TokenManager {
     if (!TokenManager.instance) {
@@ -13,15 +14,15 @@ class TokenManager {
 
   async refreshTokenCSR(): Promise<void> {
   
-    if (this.refreshPromise) {
-      return this.refreshPromise;
+    if (this.csrRefreshPromise) {
+      return this.csrRefreshPromise;
     }
 
-    this.refreshPromise = this.performRefreshCSR();
+    this.csrRefreshPromise = this.performRefreshCSR();
     try {
-      await this.refreshPromise;
+      await this.csrRefreshPromise;
     } finally {
-      this.refreshPromise = null;
+      this.csrRefreshPromise = null;
     }
   }
 
@@ -49,15 +50,15 @@ class TokenManager {
 
   async refreshTokenSSR(url: string, cookies: string): Promise<string | null> {
 
-    if (this.refreshPromise) {
-      return this.refreshPromise;
+    if (this.ssrRefreshPromise) {
+      return this.ssrRefreshPromise;
     }
 
-    this.refreshPromise = this.performRefreshSSR(url, cookies);
+    this.ssrRefreshPromise = this.performRefreshSSR(url, cookies);
     try {
-      return await this.refreshPromise;
+      return await this.ssrRefreshPromise;
     } finally {
-      this.refreshPromise = null;
+      this.ssrRefreshPromise = null;
     }
   }
 

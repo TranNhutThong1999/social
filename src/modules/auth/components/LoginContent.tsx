@@ -30,13 +30,17 @@ export default function LoginPageContent() {
       login(data.user);
       toast.success('Login was successful!');
       const redirectTo = searchParams.get('redirect');
-      if (redirectTo) {
-        router.replace(redirectTo);
-      } else {
-        router.replace('/');
-      }
+      console.log('redirectTo:', redirectTo);
+
+      const targetPath = redirectTo || '/';
+
+      setTimeout(() => {
+        router.refresh();
+        router.replace(targetPath);
+      }, 300);
     },
     onError: (error: any) => {
+      console.error('Login error:', error);
       toast.error(error.response?.data.error || 'Failed to log in');
     },
   });

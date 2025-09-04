@@ -1,8 +1,8 @@
-import { cookies, headers } from 'next/headers';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { API_ENDPOINTS } from '../constants/api';
 import { tokenManager } from '../libs/token-manager';
-import { redirect } from 'next/navigation';
-
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000';
 
 export async function fetchWithAuth(
   input: RequestInfo | URL,
@@ -10,13 +10,11 @@ export async function fetchWithAuth(
 ) {
   const cookieStore = await cookies();
   const cookieString = cookieStore.toString();
+  const hasRefreshToken = /(^|;\s*)refresh-token=/.test(cookieString);
+  console.log('NEXT_PUBLIC_API_URL', NEXT_PUBLIC_API_URL);
+  const url = `${NEXT_PUBLIC_API_URL}${input}`;
 
-  const headersList = await headers();
-  const host = headersList.get('host');
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}${input}`;
-
-  const refreshUrl = `${protocol}://${host}${API_ENDPOINTS.AUTH.REFRESH_TOKEN}`;
+  const refreshUrl = `${NEXT_PUBLIC_API_URL}${API_ENDPOINTS.AUTH.REFRESH_TOKEN}`;
   const response = await fetch(url, {
     ...init,
     headers: {
@@ -28,26 +26,29 @@ export async function fetchWithAuth(
   });
 
   if (response.status === 401) {
-    try {
-      const newCookies = await tokenManager.refreshTokenSSR(
-        refreshUrl,
-        cookieString
-      );
+    if (hasRefreshToken) {
+      try {
+        const newCookies = await tokenManager.refreshTokenSSR(
+          refreshUrl,
+          cookieString
+        );
 
-      if (newCookies) {
-        return await fetch(url, {
-          ...init,
-          headers: {
-            ...init?.headers,
-            Cookie: newCookies,
-          },
-          cache: 'no-store',
-        });
+        if (newCookies) {
+          return await fetch(url, {
+            ...init,
+            headers: {
+              ...init?.headers,
+              Cookie: newCookies,
+            },
+            cache: 'no-store',
+          });
+        }
+      } catch (error) {
+        console.error('SSR refresh failed:', error);
       }
-    } catch (error) {
-      console.error('SSR refresh failed:', error);
-      redirect('/login');
     }
+    
+    redirect('/login');
   }
   return response;
 }

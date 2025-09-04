@@ -1,27 +1,32 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { AUTH_ROUTES, COOKIE_NAMES, PROTECTED_ROUTES, ROUTES } from './constants/routes';
+import { cookies } from 'next/headers';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
-  const authToken = request.cookies.get(COOKIE_NAMES.AUTH_TOKEN)?.value;
-  const refreshToken = request.cookies.get(COOKIE_NAMES.REFRESH_TOKEN)?.value;
+  const cookieStore = await cookies();
+  const authToken = cookieStore.get(COOKIE_NAMES.AUTH_TOKEN)?.value;
+  const refreshToken = cookieStore.get(COOKIE_NAMES.REFRESH_TOKEN)?.value;
   const token = authToken || refreshToken;
-
+  
   const isAuthRoute = AUTH_ROUTES.includes(pathname as typeof AUTH_ROUTES[number]);
   
-    const isProtectedRoute = PROTECTED_ROUTES.some(route => 
+  const isProtectedRoute = PROTECTED_ROUTES.some(route => 
     pathname.startsWith(route)
   );
 
-  if (isProtectedRoute && !token) {
-    const loginUrl = new URL(ROUTES.LOGIN, request.url);
-    loginUrl.searchParams.set('redirect', pathname);
-    return NextResponse.redirect(loginUrl);
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
   }
+
+  // if (isProtectedRoute && !token) {
+  //   const loginUrl = new URL(ROUTES.LOGIN, request.url);
+  //   loginUrl.searchParams.set('redirect', pathname);
+  //   return NextResponse.redirect(loginUrl);
+  // }
   
-  if (token && isAuthRoute) {
+  if (authToken && isAuthRoute) {
     return NextResponse.redirect(new URL('/', request.url));
   }
   
